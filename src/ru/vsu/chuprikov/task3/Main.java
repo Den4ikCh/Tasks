@@ -1,14 +1,12 @@
 package ru.vsu.chuprikov.task3;
 
-import java.awt.*;
+import java.awt.Point;
 import java.util.Scanner;
 
 public class Main {
      public static final Parabola parabola = new Parabola(2, 2, 1, false);
      public static final Line line1 = new Line(2.5, 8.5);
      public static final Line line2 = new Line(-2);
-     /*public static final Rectangle rectangle = new Rectangle(new Point(-2, 3), new Point(1, -2));
-     public static final Circle circle = new Circle(1, -3, 3);*/
 
      public static void main(String[] args) {
           Point p1 = new Point(-2, 3);

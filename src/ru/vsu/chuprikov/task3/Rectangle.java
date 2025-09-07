@@ -1,12 +1,12 @@
 package ru.vsu.chuprikov.task3;
 
-import java.awt.*;
+import java.awt.Point;
 
 public class Rectangle {
-    public double x0;
-    public double x1;
-    public double y0;
-    public double y1;
+    double x0;
+    double x1;
+    double y0;
+    double y1;
 
     public Rectangle(Point p0, Point p1) {
         this.x0 = Math.min(p0.x, p1.x);
