@@ -1,19 +1,21 @@
 package ru.vsu.chuprikov.task3;
 
-public class Rectangle {
-    double _x0;
-    double _x1;
-    double _y0;
-    double _y1;
+import java.awt.*;
 
-    public Rectangle(double x0, double y0, double x1, double y1) {
-        _x0 = Math.min(x0, x1);
-        _x1 = Math.max(x0, x1);
-        _y0 = Math.min(y0, y1);
-        _y1 = Math.max(y0, y1);
+public class Rectangle {
+    public double x0;
+    public double x1;
+    public double y0;
+    public double y1;
+
+    public Rectangle(Point p0, Point p1) {
+        this.x0 = Math.min(p0.x, p1.x);
+        this.x1 = Math.max(p0.x, p1.x);
+        this.y0 = Math.min(p0.y, p1.y);
+        this.y1 = Math.max(p0.y, p1.y);
     }
 
-    public boolean isPointInside (double x, double y) {
-        return _x0 < x && x < _x1 && _y0 < y && y < _y1;
+    public boolean isPointInside(double x, double y) {
+        return x0 < x && x < x1 && y0 < y && y < y1;
     }
 }
