@@ -13,10 +13,10 @@ public class Main {
           Point p2 = new Point(0, -3);
           Point p3 = new Point(-5, -3);
           Point p4 = new Point(6, 2);
-          PrintColorForPoint(p1.x, p1.y);
-          PrintColorForPoint(p2.x, p2.y);
-          PrintColorForPoint(p3.x, p3.y);
-          PrintColorForPoint(p4.x, p4.y);
+          printColorForPoint(p1.x, p1.y);
+          printColorForPoint(p2.x, p2.y);
+          printColorForPoint(p3.x, p3.y);
+          printColorForPoint(p4.x, p4.y);
 
           System.out.print("Input x: ");
           Scanner in = new Scanner(System.in);
@@ -25,14 +25,14 @@ public class Main {
           double y = in.nextDouble();
           in.close();
           if (-10 <= x && x <= 10 && -10 <= y && y <= 10) {
-               PrintColorForPoint(x, y);
+               printColorForPoint(x, y);
           }
           else {
                System.out.print("Точка находится за пределами картинки.");
           }
      }
 
-     public static SimpleColor GetColor(double x, double y) {
+     public static SimpleColor getColor(double x, double y) {
           if (parabola.isPointInParabola(x, y))
           {
                return SimpleColor.ORANGE;
@@ -49,7 +49,7 @@ public class Main {
           }
      }
 
-     public static void PrintColorForPoint(double x, double y) {
-          System.out.printf("(%.1f, %.1f) -> %s\n", x, y, GetColor(x, y));
+     public static void printColorForPoint(double x, double y) {
+          System.out.printf("(%.1f, %.1f) -> %s\n", x, y, getColor(x, y));
      }
 }
