@@ -1,28 +1,54 @@
 package ru.vsu.chuprikov.task3;
 
-import java.awt.Point;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
-     public static final Parabola parabola = new Parabola(2, 2, 1, false);
-     public static final Line line1 = new Line(2.5, 8.5);
-     public static final Line line2 = new Line(-2);
+     public static final Line ImaginaryLine = new Line(3);
+     public static final Line line = new Line(4, 6);
+     public static final Circle circle = new Circle(-2, 3, 2);
+     public static final Rectangle rectangle = new Rectangle(new PointDouble(-3, 0), new PointDouble(7, 8));
 
      public static void main(String[] args) {
-          Point p1 = new Point(-2, 3);
-          Point p2 = new Point(0, -3);
-          Point p3 = new Point(-5, -3);
-          Point p4 = new Point(6, 2);
-          printColorForPoint(p1.x, p1.y);
-          printColorForPoint(p2.x, p2.y);
-          printColorForPoint(p3.x, p3.y);
-          printColorForPoint(p4.x, p4.y);
+          PointDouble[] Points = new PointDouble[8];
+          Points[0] = new PointDouble(-5, 3);
+          Points[1] = new PointDouble(3, -3);
+          Points[2] = new PointDouble(5, 2);
+          Points[3] = new PointDouble(-0.5, 2.5);
+          Points[4] = new PointDouble(-2, 0.5);
+          Points[5] = new PointDouble(-2, 3);
+          Points[6] = new PointDouble(-3.5, 3);
+          Points[7] = new PointDouble(-1, 7);
+          for (PointDouble Point : Points) {
+               printColorForPoint(Point.x, Point.y);
+          }
 
           System.out.print("Input x: ");
           Scanner in = new Scanner(System.in);
-          double x = in.nextDouble();
+          in.useLocale(Locale.US);
+          double x;
+          while (true) {
+               try {
+                    x = in.nextDouble();
+                    break;
+               }
+               catch (Exception e) {
+                    System.out.print("Вы неверно ввели данные, попробуйте ещё раз: ");
+                    in.nextLine();
+               }
+          }
           System.out.print("Input y: ");
-          double y = in.nextDouble();
+          double y;
+          while (true) {
+               try {
+                    y = in.nextDouble();
+                    break;
+               }
+               catch (Exception e) {
+                    System.out.print("Вы неверно ввели данные, попробуйте ещё раз: ");
+                    in.nextLine();
+               }
+          }
           in.close();
           if (-10 <= x && x <= 10 && -10 <= y && y <= 10) {
                printColorForPoint(x, y);
@@ -33,19 +59,20 @@ public class Main {
      }
 
      public static SimpleColor getColor(double x, double y) {
-          if (parabola.isPointInParabola(x, y))
-          {
+          if (!line.isPointAboveLine(x, y)) {
+               if (!rectangle.isPointInside(x, y) || circle.isPointInside(x, y)) {
+                    return SimpleColor.BLUE;
+               }
                return SimpleColor.ORANGE;
           }
-          if (line2.isPointAboveLine(x, y))
-          {
-               return SimpleColor.GRAY;
+          else if (!rectangle.isPointInside(x, y)) {
+               return SimpleColor.WHITE;
           }
-          else if (line1.isPointAboveLine(x, y)) {
+          else if (circle.isPointInside(x, y) || ImaginaryLine.isPointAboveLine(x, y)) {
                return SimpleColor.GREEN;
           }
           else {
-               return SimpleColor.YELLOW;
+               return SimpleColor.ORANGE;
           }
      }
 
