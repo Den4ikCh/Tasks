@@ -10,10 +10,18 @@ public class Main {
         while (true) {
             try {
                 k = in.nextLong();
+                if (k < 1) {
+                    throw new Exception("Данное число не является положительным, попробуйте ещё раз: ");
+                }
                 break;
             }
             catch (Exception e) {
-                System.out.print("Неверный формат числа, попробуйте ещё раз: ");
+                if (e.getMessage() == null) {
+                    System.out.print("Неверный формат числа, попробуйте ещё раз: ");
+                }
+                else {
+                    System.out.print(e.getMessage());
+                }
                 in.nextLine();
             }
         }
