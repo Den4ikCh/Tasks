@@ -5,7 +5,18 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        long k = in.nextLong();
+        System.out.print("Введите натуральное число: ");
+        long k;
+        while (true) {
+            try {
+                k = in.nextLong();
+                break;
+            }
+            catch (Exception e) {
+                System.out.print("Неверный формат числа, попробуйте ещё раз: ");
+                in.nextLine();
+            }
+        }
         in.close();
         System.out.println(getCurrentNumber(k));
         if (k < 1e5) {
