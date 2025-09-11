@@ -1,7 +1,5 @@
 package ru.vsu.chuprikov.task3;
 
-import java.util.Objects;
-
 public class PointDouble {
     double x;
     double y;

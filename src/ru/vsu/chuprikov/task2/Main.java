@@ -57,13 +57,22 @@ public class Main {
         while (true) {
             try {
                  r1 = in.nextDouble();
+                 if (r1 <= 0) {
+                     throw new Exception("Окружность должна иметь положительный радиус: ");
+                 }
                  break;
             }
             catch (Exception e) {
-                System.out.print("Вы неверно ввели данные, попробуйте ещё раз: ");
+                if (e.getMessage() == null) {
+                    System.out.print("Вы неверно ввели данные, попробуйте ещё раз: ");
+                }
+                else {
+                    System.out.print(e.getMessage());
+                }
                 in.nextLine();
             }
         }
+        in.nextLine();
         System.out.print("Введите координаты центра второй окружности в формате x, y: ");
         while (true) {
             try {
@@ -84,10 +93,18 @@ public class Main {
         while (true) {
             try {
                 r2 = in.nextDouble();
+                if (r2 <= 0) {
+                    throw new Exception("Окружность должна иметь положительный радиус: ");
+                }
                 break;
             }
             catch (Exception e) {
-                System.out.print("Вы неверно ввели данные, попробуйте ещё раз: ");
+                if (e.getMessage() == null) {
+                    System.out.print("Вы неверно ввели данные, попробуйте ещё раз: ");
+                }
+                else {
+                    System.out.print(e.getMessage());
+                }
                 in.nextLine();
             }
         }
