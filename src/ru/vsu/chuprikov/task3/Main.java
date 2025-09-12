@@ -23,9 +23,10 @@ public class Main {
                printColorForPoint(Point.x, Point.y);
           }
 
+          Locale.setDefault(Locale.US);
+
           System.out.print("Input x: ");
           Scanner in = new Scanner(System.in);
-          in.useLocale(Locale.US);
           double x;
           while (true) {
                try {
@@ -77,6 +78,8 @@ public class Main {
      }
 
      public static void printColorForPoint(double x, double y) {
+          Locale.setDefault(Locale.US);
+
           System.out.printf("(%.1f, %.1f) -> %s\n", x, y, getColor(x, y));
      }
 }

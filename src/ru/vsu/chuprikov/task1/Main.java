@@ -5,8 +5,9 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        Locale.setDefault(Locale.US);
+
         Scanner in = new Scanner(System.in);
-        in.useLocale(Locale.US);
         System.out.print("Введите радиус меньшей окружности: ");
         double r1 = in.nextDouble();
         System.out.print("Введите радиус средней окружности: ");

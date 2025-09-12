@@ -34,8 +34,9 @@ public class Main {
     }
 
     public static Circle[] getInfo() {
+        Locale.setDefault(Locale.US);
+
         Scanner in = new Scanner(System.in);
-        in.useLocale(Locale.US);
         System.out.print("Введите координаты центра первой окружности в формате x, y: ");
         double x1, x2, y1, y2, r1, r2;
         while (true) {
@@ -119,6 +120,8 @@ public class Main {
     }
 
     public static void displayInfo(String info) {
+        Locale.setDefault(Locale.US);
+
         System.out.println(info);
     }
 }
