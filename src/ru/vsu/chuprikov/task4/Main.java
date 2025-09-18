@@ -42,20 +42,20 @@ public class Main {
         k--;
         long x = k / i;
         k %= i;
-        long CurrentNumber = (long)Math.pow(10, i - 1) + x;
-        return getNumberAtPosition(CurrentNumber, (byte)(i - k - 1));
+        long currentNumber = (long)Math.pow(10, i - 1) + x;
+        return getNumberAtPosition(currentNumber, (byte)(i - k - 1));
     }
 
-    public static byte getNumberAtPosition(long Number, byte Position) {
-        return (byte)((Number % Math.pow(10, Position + 1)) / Math.pow(10, Position));
+    public static byte getNumberAtPosition(long number, byte position) {
+        return (byte)((number % Math.pow(10, position + 1)) / Math.pow(10, position));
     }
 
     public static char testOnString(int k) {
-        String Numbers = "";
+        String numbers = "";
         int n = 1;
-        while (Numbers.length() < k) {
-            Numbers += n++;
+        while (numbers.length() < k) {
+            numbers += n++;
         }
-        return Numbers.charAt(k - 1);
+        return numbers.charAt(k - 1);
     }
 }

@@ -4,23 +4,23 @@ import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
-     public static final Line ImaginaryLine = new Line(3);
+     public static final Line imaginaryLine = new Line(3);
      public static final Line line = new Line(4, 6);
      public static final Circle circle = new Circle(-2, 3, 2);
      public static final Rectangle rectangle = new Rectangle(new PointDouble(-3, 0), new PointDouble(7, 8));
 
      public static void main(String[] args) {
-          PointDouble[] Points = new PointDouble[8];
-          Points[0] = new PointDouble(-5, 3);
-          Points[1] = new PointDouble(3, -3);
-          Points[2] = new PointDouble(5, 2);
-          Points[3] = new PointDouble(-0.5, 2.5);
-          Points[4] = new PointDouble(-2, 0.5);
-          Points[5] = new PointDouble(-2, 3);
-          Points[6] = new PointDouble(-3.5, 3);
-          Points[7] = new PointDouble(-1, 7);
-          for (PointDouble Point : Points) {
-               printColorForPoint(Point.x, Point.y);
+          PointDouble[] points = new PointDouble[8];
+          points[0] = new PointDouble(-5, 3);
+          points[1] = new PointDouble(3, -3);
+          points[2] = new PointDouble(5, 2);
+          points[3] = new PointDouble(-0.5, 2.5);
+          points[4] = new PointDouble(-2, 0.5);
+          points[5] = new PointDouble(-2, 3);
+          points[6] = new PointDouble(-3.5, 3);
+          points[7] = new PointDouble(-1, 7);
+          for (PointDouble point : points) {
+               printColorForPoint(point.x, point.y);
           }
 
           Locale.setDefault(Locale.US);
@@ -69,7 +69,7 @@ public class Main {
           else if (!rectangle.isPointInside(x, y)) {
                return SimpleColor.WHITE;
           }
-          else if (circle.isPointInside(x, y) || ImaginaryLine.isPointAboveLine(x, y)) {
+          else if (circle.isPointInside(x, y) || imaginaryLine.isPointAboveLine(x, y)) {
                return SimpleColor.GREEN;
           }
           else {

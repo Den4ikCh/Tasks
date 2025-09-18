@@ -5,29 +5,29 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Circle[] Circles = getInfo();
-        String Result = relativePositionOfCircles(Circles[0], Circles[1]);
-        displayInfo(Result);
+        Circle[] circles = getInfo();
+        String result = relativePositionOfCircles(circles[0], circles[1]);
+        displayInfo(result);
     }
 
-    public static String relativePositionOfCircles(Circle Circle1, Circle Circle2) {
-        if (Circle1.equals(Circle2)) {
+    public static String relativePositionOfCircles(Circle circle1, Circle circle2) {
+        if (circle1.equals(circle2)) {
             return "Окружности совпадают.";
         }
-        double DistanceBetweenCenters = getDistanceBetweenCenters(Circle1, Circle2);
-        double SummOfRadiuses = Circle1.r + Circle2.r;
-        double MaxRadius = Math.max(Circle1.r, Circle2.r);
-        double MinRadius = Math.min(Circle1.r, Circle2.r);
-        if (SummOfRadiuses < DistanceBetweenCenters) {
+        double distanceBetweenCenters = getDistanceBetweenCenters(circle1, circle2);
+        double summOfRadiuses = circle1.r + circle2.r;
+        double maxRadius = Math.max(circle1.r, circle2.r);
+        double minRadius = Math.min(circle1.r, circle2.r);
+        if (summOfRadiuses < distanceBetweenCenters) {
             return "Окружности не пересекаются.";
         }
-        else if (SummOfRadiuses == DistanceBetweenCenters) {
+        else if (summOfRadiuses == distanceBetweenCenters) {
             return "Окружности касаются внешним образом.";
         }
-        else if (MaxRadius - MinRadius < DistanceBetweenCenters) {
+        else if (maxRadius - minRadius < distanceBetweenCenters) {
             return "Окружности пересекаются в 2 точках.";
         }
-        else if (MaxRadius - MinRadius == DistanceBetweenCenters) {
+        else if (maxRadius - minRadius == distanceBetweenCenters) {
             return "Окружности касаются внутренним образом.";
         }
         return "Окружности не пересекаются, одна находится внутри другой.";
@@ -42,12 +42,12 @@ public class Main {
         while (true) {
             try {
                 String tmp = in.nextLine();
-                String[] Coordinates = tmp.split(", ");
-                if (Coordinates.length != 2) {
+                String[] coordinates = tmp.split(", ");
+                if (coordinates.length != 2) {
                     throw new Exception();
                 }
-                x1 = Double.parseDouble(Coordinates[0]);
-                y1 = Double.parseDouble(Coordinates[1]);
+                x1 = Double.parseDouble(coordinates[0]);
+                y1 = Double.parseDouble(coordinates[1]);
                 break;
             }
             catch (Exception e) {
@@ -78,12 +78,12 @@ public class Main {
         while (true) {
             try {
                 String tmp = in.nextLine();
-                String[] Coordinates = tmp.split(", ");
-                if (Coordinates.length != 2) {
+                String[] coordinates = tmp.split(", ");
+                if (coordinates.length != 2) {
                     throw new Exception();
                 }
-                x2 = Double.parseDouble(Coordinates[0]);
-                y2 = Double.parseDouble(Coordinates[1]);
+                x2 = Double.parseDouble(coordinates[0]);
+                y2 = Double.parseDouble(coordinates[1]);
                 break;
             }
             catch (Exception e) {
@@ -110,13 +110,13 @@ public class Main {
             }
         }
         in.close();
-        Circle FirstCircle = new Circle(x1, y1, r1);
-        Circle SecondCircle = new Circle(x2, y2, r2);
-        return new Circle[] {FirstCircle, SecondCircle};
+        Circle firstCircle = new Circle(x1, y1, r1);
+        Circle secondCircle = new Circle(x2, y2, r2);
+        return new Circle[] {firstCircle, secondCircle};
     }
 
-    public static double getDistanceBetweenCenters(Circle Circle1, Circle Circle2) {
-        return Math.sqrt(Math.pow(Circle1.x0 - Circle2.x0, 2) + Math.pow(Circle1.y0 - Circle2.y0, 2));
+    public static double getDistanceBetweenCenters(Circle circle1, Circle circle2) {
+        return Math.sqrt(Math.pow(circle1.x0 - circle2.x0, 2) + Math.pow(circle1.y0 - circle2.y0, 2));
     }
 
     public static void displayInfo(String info) {

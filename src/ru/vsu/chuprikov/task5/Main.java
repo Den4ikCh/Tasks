@@ -29,10 +29,10 @@ public class Main {
     }
 
     public static void paintParallelogram(int s) {
-        char Inside = '#';
-        char Outside = '*';
+        char inside = '#';
+        char outside = '*';
         for (int i = 0; i < s; i++) {
-            System.out.print(Outside);
+            System.out.print(outside);
         }
         System.out.println();
 
@@ -41,20 +41,20 @@ public class Main {
                 System.out.print(' ');
             }
             if ((i != 1) && (i != s - 2)) {
-                System.out.print(Outside);
-                System.out.print(Inside);
+                System.out.print(outside);
+                System.out.print(inside);
                 for (int j = 0; j < s - 4; j++) {
                     System.out.print(' ');
                 }
-                System.out.print(Inside);
-                System.out.print(Outside);
+                System.out.print(inside);
+                System.out.print(outside);
             }
             else {
-                System.out.print(Outside);
+                System.out.print(outside);
                 for (int j = 0; j < s - 2; j++) {
-                    System.out.print(Inside);
+                    System.out.print(inside);
                 }
-                System.out.print(Outside);
+                System.out.print(outside);
             }
             System.out.println();
         }
@@ -63,7 +63,7 @@ public class Main {
             System.out.print(' ');
         }
         for (int i = 0; i < s; i++) {
-            System.out.print(Outside);
+            System.out.print(outside);
         }
     }
 }
