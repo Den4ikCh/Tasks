@@ -19,11 +19,14 @@ public class Main {
     }
     
     public static double squareCalculation(double radius1, double radius2, double radius3) {
-        double square1 = (Math.PI * Math.pow(radius1, 2)) / 4; //четверть меньшего круга
-        double square2 = (Math.PI * Math.pow(radius2, 2) - Math.PI * Math.pow(radius1, 2)) * 3 / 8; //фигура, ограниченная средним и малым кругом
-        double square3 = (Math.PI * Math.pow(radius3, 2) - Math.PI * Math.pow(radius2, 2)) / 2; //фигура, ограниченная большим и средним кругом
-        double square4 = (Math.pow(radius3 * 2, 2) - Math.PI * Math.pow(radius3, 2)) * 5 / 8; //уголки
-        double result = square1 + square2 + square3 + square4;
-        return result;
+        double square1 = squareOfCircle(radius1) / 4; //четверть меньшего круга
+        double square2 = (squareOfCircle(radius2) - squareOfCircle(radius1)) * 3 / 8; //фигура, ограниченная средним и малым кругом
+        double square3 = (squareOfCircle(radius3) - squareOfCircle(radius2)) / 2; //фигура, ограниченная большим и средним кругом
+        double square4 = (Math.pow(radius3 * 2, 2) - squareOfCircle(radius3)) * 5 / 8; //уголки
+        return square1 + square2 + square3 + square4;
+    }
+
+    public static double squareOfCircle(double radius) {
+        return Math.pow(radius, 2) * Math.PI;
     }
 }
