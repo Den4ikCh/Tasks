@@ -7,14 +7,14 @@ public class Main {
     public static void main(String[] args) {
         Locale.setDefault(Locale.US);
 
-        Scanner in = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         System.out.print("Введите радиус меньшей окружности: ");
-        double radius1 = in.nextDouble();
+        double radius1 = scanner.nextDouble();
         System.out.print("Введите радиус средней окружности: ");
-        double radius2 = in.nextDouble();
+        double radius2 = scanner.nextDouble();
         System.out.print("Введите радиус большей окружности: ");
-        double radius3 = in.nextDouble();
-        in.close();
+        double radius3 = scanner.nextDouble();
+        scanner.close();
         System.out.printf("Площадь закрашенной области равна %.5f квадратных единиц.", squareCalculation(radius1, radius2, radius3));
     }
     
