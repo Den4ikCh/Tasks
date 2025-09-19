@@ -21,13 +21,13 @@ public class Main {
         if (summOfRadiuses < distanceBetweenCenters) {
             return "Окружности не пересекаются.";
         }
-        else if (summOfRadiuses == distanceBetweenCenters) {
+        else if (doubleEquals(summOfRadiuses, distanceBetweenCenters)) {
             return "Окружности касаются внешним образом.";
         }
         else if (maxRadius - minRadius < distanceBetweenCenters) {
             return "Окружности пересекаются в 2 точках.";
         }
-        else if (maxRadius - minRadius == distanceBetweenCenters) {
+        else if (doubleEquals(maxRadius - minRadius, distanceBetweenCenters)) {
             return "Окружности касаются внутренним образом.";
         }
         return "Окружности не пересекаются, одна находится внутри другой.";
@@ -123,5 +123,9 @@ public class Main {
         Locale.setDefault(Locale.US);
 
         System.out.println(info);
+    }
+
+    public static boolean doubleEquals(double a, double b) {
+        return Math.abs(a - b) < 1e-10;
     }
 }
