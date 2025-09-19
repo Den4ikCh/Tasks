@@ -23,34 +23,12 @@ public class Main {
                printColorForPoint(point.x, point.y);
           }
 
-          Locale.setDefault(Locale.US);
-
           System.out.print("Input x: ");
-          Scanner in = new Scanner(System.in);
-          double x;
-          while (true) {
-               try {
-                    x = in.nextDouble();
-                    break;
-               }
-               catch (Exception e) {
-                    System.out.print("Вы неверно ввели данные, попробуйте ещё раз: ");
-                    in.nextLine();
-               }
-          }
+          double x = getDouble();
+
           System.out.print("Input y: ");
-          double y;
-          while (true) {
-               try {
-                    y = in.nextDouble();
-                    break;
-               }
-               catch (Exception e) {
-                    System.out.print("Вы неверно ввели данные, попробуйте ещё раз: ");
-                    in.nextLine();
-               }
-          }
-          in.close();
+          double y = getDouble();
+
           if (-10 <= x && x <= 10 && -10 <= y && y <= 10) {
                printColorForPoint(x, y);
           }
@@ -75,6 +53,23 @@ public class Main {
           else {
                return SimpleColor.ORANGE;
           }
+     }
+
+     public static double getDouble() {
+          Locale.setDefault(Locale.US);
+          Scanner in = new Scanner(System.in);
+          double result = 0;
+          while (true) {
+               try {
+                    result = in.nextDouble();
+                    break;
+               }
+               catch (Exception e) {
+                    System.out.print("Вы неверно ввели данные, попробуйте ещё раз: ");
+                    in.nextLine();
+               }
+          }
+          return result;
      }
 
      public static void printColorForPoint(double x, double y) {
