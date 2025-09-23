@@ -34,11 +34,17 @@ public class Main {
     }
 
     public static Circle[] getInfo() {
+        Circle firstCircle = getInfoAboutCircle(1);
+        Circle secondCircle = getInfoAboutCircle(2);
+        return new Circle[] {firstCircle, secondCircle};
+    }
+
+    public static Circle getInfoAboutCircle(int index) {
         Locale.setDefault(Locale.US);
 
         Scanner in = new Scanner(System.in);
-        System.out.print("Введите координаты центра первой окружности в формате x, y: ");
-        double x1, x2, y1, y2, r1, r2;
+        double x, y, r;
+        System.out.printf("Введите координаты центра %d-й окружности в формате x, y: ", index);
         while (true) {
             try {
                 String tmp = in.nextLine();
@@ -46,55 +52,19 @@ public class Main {
                 if (coordinates.length != 2) {
                     throw new Exception();
                 }
-                x1 = Double.parseDouble(coordinates[0]);
-                y1 = Double.parseDouble(coordinates[1]);
+                x = Double.parseDouble(coordinates[0]);
+                y = Double.parseDouble(coordinates[1]);
                 break;
             }
             catch (Exception e) {
                 System.out.print("Вы неверно ввели данные, попробуйте ещё раз: ");
             }
         }
-        System.out.print("Введите радиус первой окружности: ");
+        System.out.printf("Введите радиус %d-й окружности: ", index);
         while (true) {
             try {
-                 r1 = in.nextDouble();
-                 if (r1 <= 0) {
-                     throw new Exception("Окружность должна иметь положительный радиус: ");
-                 }
-                 break;
-            }
-            catch (Exception e) {
-                if (e.getMessage() == null) {
-                    System.out.print("Вы неверно ввели данные, попробуйте ещё раз: ");
-                }
-                else {
-                    System.out.print(e.getMessage());
-                }
-                in.nextLine();
-            }
-        }
-        in.nextLine();
-        System.out.print("Введите координаты центра второй окружности в формате x, y: ");
-        while (true) {
-            try {
-                String tmp = in.nextLine();
-                String[] coordinates = tmp.split(", ");
-                if (coordinates.length != 2) {
-                    throw new Exception();
-                }
-                x2 = Double.parseDouble(coordinates[0]);
-                y2 = Double.parseDouble(coordinates[1]);
-                break;
-            }
-            catch (Exception e) {
-                System.out.print("Вы неверно ввели данные, попробуйте ещё раз: ");
-            }
-        }
-        System.out.print("Введите радиус второй окружности: ");
-        while (true) {
-            try {
-                r2 = in.nextDouble();
-                if (r2 <= 0) {
+                r = in.nextDouble();
+                if (r <= 0) {
                     throw new Exception("Окружность должна иметь положительный радиус: ");
                 }
                 break;
@@ -109,10 +79,7 @@ public class Main {
                 in.nextLine();
             }
         }
-        in.close();
-        Circle firstCircle = new Circle(x1, y1, r1);
-        Circle secondCircle = new Circle(x2, y2, r2);
-        return new Circle[] {firstCircle, secondCircle};
+        return new Circle(x, y, r);
     }
 
     public static double getDistanceBetweenCenters(Circle circle1, Circle circle2) {
