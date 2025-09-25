@@ -9,20 +9,16 @@ public class Main {
         System.out.print("Введите натуральное число: ");
         long k;
         while (true) {
-            try {
+            if (in.hasNextLong()) {
                 k = in.nextLong();
                 if (k < 1) {
-                    throw new Exception("Данное число не является положительным, попробуйте ещё раз: ");
+                    System.out.println("Данное число не является положительным, попробуйте ещё раз: ");
+                    continue;
                 }
                 break;
             }
-            catch (Exception e) {
-                if (e.getMessage() == null) {
-                    System.out.print("Неверный формат числа, попробуйте ещё раз: ");
-                }
-                else {
-                    System.out.print(e.getMessage());
-                }
+            else {
+                System.out.print("Неверный формат числа, попробуйте ещё раз: ");
                 in.nextLine();
             }
         }

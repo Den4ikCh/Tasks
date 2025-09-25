@@ -8,22 +8,34 @@ public class Main {
         Scanner in = new Scanner(System.in);
         System.out.print("Введите длину стороны параллелограмма: ");
         while (true) {
-            try {
+            if (in.hasNextInt()) {
                 s = in.nextInt();
                 if (s < 3) {
-                    throw new Exception("Число меньше 3, необходимо ввести число >=3: ");
+                    System.out.println("Число меньше 3, необходимо ввести число >=3: ");
+                    continue;
                 }
                 break;
             }
-            catch (Exception e) {
-                if (e.getMessage() == null) {
-                    System.out.print("Неверный формат числа, попробуйте ещё раз: ");
-                }
-                else {
-                    System.out.print(e.getMessage());
-                }
+            else {
+                System.out.print("Неверный формат числа, попробуйте ещё раз: ");
                 in.nextLine();
             }
+//            try {
+//                s = in.nextInt();
+//                if (s < 3) {
+//                    throw new Exception("Число меньше 3, необходимо ввести число >=3: ");
+//                }
+//                break;
+//            }
+//            catch (Exception e) {
+//                if (e.getMessage() == null) {
+//                    System.out.print("Неверный формат числа, попробуйте ещё раз: ");
+//                }
+//                else {
+//                    System.out.print(e.getMessage());
+//                }
+//                in.nextLine();
+//            }
         }
         paintParallelogram(s);
     }

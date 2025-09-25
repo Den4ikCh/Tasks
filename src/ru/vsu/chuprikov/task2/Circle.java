@@ -14,7 +14,7 @@ public class Circle {
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Circle) {
-            return (x0 == ((Circle) obj).x0 && y0 == ((Circle) obj).y0 && r == ((Circle) obj).r);
+            return Main.doubleEquals(x0, ((Circle) obj).x0) && Main.doubleEquals(y0, ((Circle) obj).y0) && Main.doubleEquals(r, ((Circle) obj).r);
         }
         return false;
     }

@@ -62,21 +62,18 @@ public class Main {
         }
         System.out.printf("Введите радиус %d-й окружности: ", index);
         while (true) {
-            try {
+            if (in.hasNextDouble()) {
                 r = in.nextDouble();
-                if (r <= 0) {
-                    throw new Exception("Окружность должна иметь положительный радиус: ");
-                }
-                break;
-            }
-            catch (Exception e) {
-                if (e.getMessage() == null) {
-                    System.out.print("Вы неверно ввели данные, попробуйте ещё раз: ");
+                if (r < 0) {
+                    System.out.print("Окружность должна иметь положительный радиус: ");
                 }
                 else {
-                    System.out.print(e.getMessage());
+                    break;
                 }
+            }
+            else {
                 in.nextLine();
+                System.out.print("Вы неверно ввели данные, попробуйте ещё раз: ");
             }
         }
         return new Circle(x, y, r);

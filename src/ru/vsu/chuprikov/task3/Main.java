@@ -60,11 +60,11 @@ public class Main {
           Scanner in = new Scanner(System.in);
           double result = 0;
           while (true) {
-               try {
+               if (in.hasNextDouble()) {
                     result = in.nextDouble();
                     break;
                }
-               catch (Exception e) {
+               else {
                     System.out.print("Вы неверно ввели данные, попробуйте ещё раз: ");
                     in.nextLine();
                }
