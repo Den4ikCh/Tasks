@@ -1,8 +1,5 @@
 package ru.vsu.chuprikov.task2;
 
-import ru.vsu.chuprikov.task3.Parabola;
-import ru.vsu.chuprikov.task3.VerticalParabola;
-
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -18,13 +15,13 @@ public class Main {
             return "Окружности совпадают.";
         }
         double distanceBetweenCenters = getDistanceBetweenCenters(circle1, circle2);
-        double summOfRadiuses = circle1.r + circle2.r;
+        double sumOfRadiuses = circle1.r + circle2.r;
         double maxRadius = Math.max(circle1.r, circle2.r);
         double minRadius = Math.min(circle1.r, circle2.r);
-        if (summOfRadiuses < distanceBetweenCenters) {
+        if (sumOfRadiuses < distanceBetweenCenters) {
             return "Окружности не пересекаются.";
         }
-        else if (doubleEquals(summOfRadiuses, distanceBetweenCenters)) {
+        else if (doubleEquals(sumOfRadiuses, distanceBetweenCenters)) {
             return "Окружности касаются внешним образом.";
         }
         else if (maxRadius - minRadius < distanceBetweenCenters) {
@@ -93,6 +90,6 @@ public class Main {
     }
 
     public static boolean doubleEquals(double a, double b) {
-        return Math.abs(a - b) < 1e-10;
+        return Math.abs(a - b) < 1e-6;
     }
 }

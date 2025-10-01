@@ -1,5 +1,6 @@
 package ru.vsu.chuprikov.task5;
 
+import java.lang.classfile.Attribute;
 import java.util.Scanner;
 
 public class Main {
@@ -20,24 +21,9 @@ public class Main {
                 System.out.print("Неверный формат числа, попробуйте ещё раз: ");
                 in.nextLine();
             }
-//            try {
-//                s = in.nextInt();
-//                if (s < 3) {
-//                    throw new Exception("Число меньше 3, необходимо ввести число >=3: ");
-//                }
-//                break;
-//            }
-//            catch (Exception e) {
-//                if (e.getMessage() == null) {
-//                    System.out.print("Неверный формат числа, попробуйте ещё раз: ");
-//                }
-//                else {
-//                    System.out.print(e.getMessage());
-//                }
-//                in.nextLine();
-//            }
         }
-        paintParallelogram(s);
+//        paintParallelogram(s);
+        paintMountains(s);
     }
 
     public static void paintParallelogram(int s) {
@@ -76,6 +62,42 @@ public class Main {
         }
         for (int i = 0; i < s; i++) {
             System.out.print(outside);
+        }
+    }
+
+    public static void paintMountains(int s) {
+        ArithmeticProgression progression = new ArithmeticProgression(0, 2);
+        for (int layer = 0; layer < s; layer++) {
+            int count = s - layer - 1;
+            for (int i = 0; i < progression.getSum(count + 1) + count; i++) {
+                System.out.print(' ');
+            }
+            layer++;
+            for (int i = 1; i < layer; i++) {
+                paintLayerOfMountain(i);
+                for (int j = 0; j < progression.getElementAtNumber(count + 1); j++) {
+                    System.out.print(' ');
+                }
+            }
+            for (int i = layer; i > 0; i--) {
+                paintLayerOfMountain(i);
+                for (int j = 0; j < progression.getElementAtNumber(count + 1); j++) {
+                    System.out.print(' ');
+                }
+            }
+            layer--;
+            System.out.println();
+        }
+    }
+
+    public static void paintLayerOfMountain(int s) {
+        char first = '/';
+        char second = '\\';
+        for (int i = 0; i < s; i++) {
+            System.out.print(first);
+        }
+        for (int i = 0; i < s; i++) {
+            System.out.print(second);
         }
     }
 }
