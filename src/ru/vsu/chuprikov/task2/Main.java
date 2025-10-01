@@ -1,5 +1,8 @@
 package ru.vsu.chuprikov.task2;
 
+import ru.vsu.chuprikov.task3.Parabola;
+import ru.vsu.chuprikov.task3.VerticalParabola;
+
 import java.util.Locale;
 import java.util.Scanner;
 
