@@ -1,18 +1,17 @@
 package ru.vsu.chuprikov.task5;
 
-import java.lang.classfile.Attribute;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        int s;
         Scanner in = new Scanner(System.in);
-        System.out.print("Введите длину стороны параллелограмма: ");
+        System.out.print("Что вы хотите нарисовать?\n1. Параллелограмм;\n2. Горы.\nВведите цифру: ");
+        int choice;
         while (true) {
             if (in.hasNextInt()) {
-                s = in.nextInt();
-                if (s < 3) {
-                    System.out.println("Число меньше 3, необходимо ввести число >=3: ");
+                choice = in.nextInt();
+                if (choice < 1 || choice > 2) {
+                    System.out.println("Введите 1 либо 2: ");
                     continue;
                 }
                 break;
@@ -22,8 +21,62 @@ public class Main {
                 in.nextLine();
             }
         }
-//        paintParallelogram(s);
-        paintMountains(s);
+        switch (choice) {
+            case 1: {
+                int s = getInfoAboutParallelogram();
+                paintParallelogram(s);
+                break;
+            }
+            case 2: {
+                int s = getInfoAboutMountains();
+                paintMountains(s);
+                break;
+            }
+            default:
+                System.out.println("Ошибка.");
+        }
+    }
+
+    public static int getInfoAboutParallelogram() {
+        int s;
+        Scanner in = new Scanner(System.in);
+        System.out.print("Введите длину стороны параллелограмма: ");
+        while (true) {
+            if (in.hasNextInt()) {
+                s = in.nextInt();
+                if (s < 3) {
+                    System.out.print("Число меньше 3, необходимо ввести число >=3: ");
+                    continue;
+                }
+                break;
+            }
+            else {
+                System.out.print("Неверный формат числа, попробуйте ещё раз: ");
+                in.nextLine();
+            }
+        }
+        return s;
+    }
+
+    public static int getInfoAboutMountains() {
+        int s;
+        Scanner in = new Scanner(System.in);
+        System.out.print("Введите высоту средней горы: ");
+        while (true) {
+            if (in.hasNextInt()) {
+                s = in.nextInt();
+                if (s < 1) {
+                    System.out.print("Необходимо натуральное число: ");
+                    continue;
+                }
+                break;
+            }
+            else {
+                System.out.print("Неверный формат числа, попробуйте ещё раз: ");
+                in.nextLine();
+            }
+        }
+        return s;
     }
 
     public static void paintParallelogram(int s) {
