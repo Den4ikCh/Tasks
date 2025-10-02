@@ -63,8 +63,7 @@ public class Main {
                if (in.hasNextDouble()) {
                     result = in.nextDouble();
                     break;
-               }
-               else {
+               } else {
                     System.out.print("Вы неверно ввели данные, попробуйте ещё раз: ");
                     in.nextLine();
                }

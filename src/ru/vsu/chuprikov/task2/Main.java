@@ -5,9 +5,9 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Circle[] circles = getInfo();
-        String result = relativePositionOfCircles(circles[0], circles[1]);
-        displayInfo(result);
+        Circle circle1 = getInfoAboutCircle(1);
+        Circle circle2 = getInfoAboutCircle(2);
+        displayInfo(relativePositionOfCircles(circle1, circle2));
     }
 
     public static String relativePositionOfCircles(Circle circle1, Circle circle2) {
@@ -18,65 +18,49 @@ public class Main {
         double sumOfRadiuses = circle1.r + circle2.r;
         double maxRadius = Math.max(circle1.r, circle2.r);
         double minRadius = Math.min(circle1.r, circle2.r);
+
         if (sumOfRadiuses < distanceBetweenCenters) {
             return "Окружности не пересекаются.";
-        }
-        else if (doubleEquals(sumOfRadiuses, distanceBetweenCenters)) {
+        } else if (doubleEquals(sumOfRadiuses, distanceBetweenCenters)) {
             return "Окружности касаются внешним образом.";
-        }
-        else if (maxRadius - minRadius < distanceBetweenCenters) {
+        } else if (maxRadius - minRadius < distanceBetweenCenters) {
             return "Окружности пересекаются в 2 точках.";
-        }
-        else if (doubleEquals(maxRadius - minRadius, distanceBetweenCenters)) {
+        } else if (doubleEquals(maxRadius - minRadius, distanceBetweenCenters)) {
             return "Окружности касаются внутренним образом.";
         }
         return "Окружности не пересекаются, одна находится внутри другой.";
     }
 
-    public static Circle[] getInfo() {
-        Circle firstCircle = getInfoAboutCircle(1);
-        Circle secondCircle = getInfoAboutCircle(2);
-        return new Circle[] {firstCircle, secondCircle};
+    public static Circle getInfoAboutCircle(int index) {
+        System.out.printf("Введите координаты центра %d-й окружности:\n", index);
+        double x = getDouble("Введите x координату: ");
+        double y = getDouble("Введите y координату: ");
+        System.out.printf("Введите радиус %d-й окружности.\n", index);
+        double r = getDouble("Введите радиус: ");
+        return new Circle(x, y, r);
     }
 
-    public static Circle getInfoAboutCircle(int index) {
+    public static double getDouble(String request) {
         Locale.setDefault(Locale.US);
 
+        double result;
         Scanner in = new Scanner(System.in);
-        double x, y, r;
-        System.out.printf("Введите координаты центра %d-й окружности в формате x, y: ", index);
         while (true) {
-            try {
-                String tmp = in.nextLine();
-                String[] coordinates = tmp.split(", ");
-                if (coordinates.length != 2) {
-                    throw new Exception();
-                }
-                x = Double.parseDouble(coordinates[0]);
-                y = Double.parseDouble(coordinates[1]);
-                break;
-            }
-            catch (Exception e) {
-                System.out.print("Вы неверно ввели данные, попробуйте ещё раз: ");
-            }
-        }
-        System.out.printf("Введите радиус %d-й окружности: ", index);
-        while (true) {
+            System.out.print(request);
             if (in.hasNextDouble()) {
-                r = in.nextDouble();
-                if (r < 0) {
-                    System.out.print("Окружность должна иметь положительный радиус: ");
-                }
-                else {
+                result = in.nextDouble();
+                if (result < 0) {
+                    System.out.println("Введено отрицательное число.");
+                    in.nextLine();
+                } else {
                     break;
                 }
-            }
-            else {
+            } else {
+                System.out.println("Вы неверно ввели данные, попробуйте ещё раз.");
                 in.nextLine();
-                System.out.print("Вы неверно ввели данные, попробуйте ещё раз: ");
             }
         }
-        return new Circle(x, y, r);
+        return result;
     }
 
     public static double getDistanceBetweenCenters(Circle circle1, Circle circle2) {
