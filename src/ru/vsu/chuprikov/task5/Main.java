@@ -1,5 +1,7 @@
 package ru.vsu.chuprikov.task5;
 
+import ru.vsu.chuprikov.utils.ConsoleUtils;
+
 import java.util.Scanner;
 
 public class Main {
@@ -23,60 +25,18 @@ public class Main {
         }
         switch (choice) {
             case 1: {
-                int s = getInfoAboutParallelogram();
+                int s = ConsoleUtils.getIntMoreThan("Введите длину стороны параллелограмма: ", 2);
                 paintParallelogram(s);
                 break;
             }
             case 2: {
-                int s = getInfoAboutMountains();
+                int s = ConsoleUtils.getPositiveInt("Введите высоту средней горы: ");
                 paintMountains(s);
                 break;
             }
             default:
                 System.out.println("Ошибка.");
         }
-    }
-
-    public static int getInfoAboutParallelogram() {
-        int s;
-        Scanner in = new Scanner(System.in);
-        System.out.print("Введите длину стороны параллелограмма: ");
-        while (true) {
-            if (in.hasNextInt()) {
-                s = in.nextInt();
-                if (s < 3) {
-                    System.out.print("Число меньше 3, необходимо ввести число >=3: ");
-                    continue;
-                }
-                break;
-            }
-            else {
-                System.out.print("Неверный формат числа, попробуйте ещё раз: ");
-                in.nextLine();
-            }
-        }
-        return s;
-    }
-
-    public static int getInfoAboutMountains() {
-        int s;
-        Scanner in = new Scanner(System.in);
-        System.out.print("Введите высоту средней горы: ");
-        while (true) {
-            if (in.hasNextInt()) {
-                s = in.nextInt();
-                if (s < 1) {
-                    System.out.print("Необходимо натуральное число: ");
-                    continue;
-                }
-                break;
-            }
-            else {
-                System.out.print("Неверный формат числа, попробуйте ещё раз: ");
-                in.nextLine();
-            }
-        }
-        return s;
     }
 
     public static void paintParallelogram(int s) {

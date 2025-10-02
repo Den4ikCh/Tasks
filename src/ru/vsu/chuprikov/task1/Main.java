@@ -1,5 +1,7 @@
 package ru.vsu.chuprikov.task1;
 
+import ru.vsu.chuprikov.utils.ConsoleUtils;
+
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -7,14 +9,9 @@ public class Main {
     public static void main(String[] args) {
         Locale.setDefault(Locale.US);
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Введите радиус меньшей окружности: ");
-        double radius1 = scanner.nextDouble();
-        System.out.print("Введите радиус средней окружности: ");
-        double radius2 = scanner.nextDouble();
-        System.out.print("Введите радиус большей окружности: ");
-        double radius3 = scanner.nextDouble();
-        scanner.close();
+        double radius1 = ConsoleUtils.getPositiveDouble("Введите радиус меньшей окружности: ");
+        double radius2 = ConsoleUtils.getPositiveDouble("Введите радиус средней окружности: ");
+        double radius3 = ConsoleUtils.getPositiveDouble("Введите радиус большей окружности: ");
         System.out.printf("Площадь закрашенной области равна %.5f квадратных единиц.", squareCalculation(radius1, radius2, radius3));
     }
     

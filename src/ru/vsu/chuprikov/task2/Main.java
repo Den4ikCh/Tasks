@@ -1,7 +1,8 @@
 package ru.vsu.chuprikov.task2;
 
 import java.util.Locale;
-import java.util.Scanner;
+
+import ru.vsu.chuprikov.utils.ConsoleUtils;
 
 public class Main {
     public static void main(String[] args) {
@@ -33,34 +34,11 @@ public class Main {
 
     public static Circle getInfoAboutCircle(int index) {
         System.out.printf("Введите координаты центра %d-й окружности:\n", index);
-        double x = getDouble("Введите x координату: ");
-        double y = getDouble("Введите y координату: ");
+        double x = ConsoleUtils.getDouble("Введите x координату: ");
+        double y = ConsoleUtils.getDouble("Введите y координату: ");
         System.out.printf("Введите радиус %d-й окружности.\n", index);
-        double r = getDouble("Введите радиус: ");
+        double r = ConsoleUtils.getPositiveDouble("Введите радиус: ");
         return new Circle(x, y, r);
-    }
-
-    public static double getDouble(String request) {
-        Locale.setDefault(Locale.US);
-
-        double result;
-        Scanner in = new Scanner(System.in);
-        while (true) {
-            System.out.print(request);
-            if (in.hasNextDouble()) {
-                result = in.nextDouble();
-                if (result < 0) {
-                    System.out.println("Введено отрицательное число.");
-                    in.nextLine();
-                } else {
-                    break;
-                }
-            } else {
-                System.out.println("Вы неверно ввели данные, попробуйте ещё раз.");
-                in.nextLine();
-            }
-        }
-        return result;
     }
 
     public static double getDistanceBetweenCenters(Circle circle1, Circle circle2) {

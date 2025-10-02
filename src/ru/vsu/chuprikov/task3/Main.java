@@ -1,7 +1,8 @@
 package ru.vsu.chuprikov.task3;
 
+import ru.vsu.chuprikov.utils.ConsoleUtils;
+
 import java.util.Locale;
-import java.util.Scanner;
 
 public class Main {
      public static final Line imaginaryLine = new Line(3);
@@ -23,11 +24,8 @@ public class Main {
                printColorForPoint(point.x, point.y);
           }
 
-          System.out.print("Input x: ");
-          double x = getDouble();
-
-          System.out.print("Input y: ");
-          double y = getDouble();
+          double x = ConsoleUtils.getDouble("Введите x: ");
+          double y = ConsoleUtils.getDouble("Введите y: ");
 
           if (-10 <= x && x <= 10 && -10 <= y && y <= 10) {
                printColorForPoint(x, y);
@@ -53,22 +51,6 @@ public class Main {
           else {
                return SimpleColor.ORANGE;
           }
-     }
-
-     public static double getDouble() {
-          Locale.setDefault(Locale.US);
-          Scanner in = new Scanner(System.in);
-          double result = 0;
-          while (true) {
-               if (in.hasNextDouble()) {
-                    result = in.nextDouble();
-                    break;
-               } else {
-                    System.out.print("Вы неверно ввели данные, попробуйте ещё раз: ");
-                    in.nextLine();
-               }
-          }
-          return result;
      }
 
      public static void printColorForPoint(double x, double y) {
