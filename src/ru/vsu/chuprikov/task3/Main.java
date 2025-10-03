@@ -29,8 +29,7 @@ public class Main {
 
           if (-10 <= x && x <= 10 && -10 <= y && y <= 10) {
                printColorForPoint(x, y);
-          }
-          else {
+          } else {
                System.out.print("Точка находится за пределами картинки.");
           }
      }
@@ -41,14 +40,11 @@ public class Main {
                     return SimpleColor.BLUE;
                }
                return SimpleColor.ORANGE;
-          }
-          else if (!rectangle.isPointInside(x, y)) {
+          } else if (!rectangle.isPointInside(x, y)) {
                return SimpleColor.WHITE;
-          }
-          else if (circle.isPointInside(x, y) || imaginaryLine.isPointAboveLine(x, y)) {
+          } else if (circle.isPointInside(x, y) || imaginaryLine.isPointAboveLine(x, y)) {
                return SimpleColor.GREEN;
-          }
-          else {
+          } else {
                return SimpleColor.ORANGE;
           }
      }

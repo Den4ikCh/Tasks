@@ -17,8 +17,7 @@ public class Main {
                     continue;
                 }
                 break;
-            }
-            else {
+            } else {
                 System.out.print("Неверный формат числа, попробуйте ещё раз: ");
                 in.nextLine();
             }
@@ -59,8 +58,7 @@ public class Main {
                 }
                 System.out.print(inside);
                 System.out.print(outside);
-            }
-            else {
+            } else {
                 System.out.print(outside);
                 for (int j = 0; j < s - 2; j++) {
                     System.out.print(inside);
