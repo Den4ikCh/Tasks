@@ -5,10 +5,10 @@ import ru.vsu.chuprikov.utils.ConsoleUtils;
 import java.util.Locale;
 
 public class Main {
-     public static final Line imaginaryLine = new Line(3);
-     public static final Line line = new Line(4, 6);
-     public static final Circle circle = new Circle(-2, 3, 2);
-     public static final Rectangle rectangle = new Rectangle(new PointDouble(-3, 0), new PointDouble(7, 8));
+     public static final Line IMAGINARY_LINE = new Line(3);
+     public static final Line LINE = new Line(4, 6);
+     public static final Circle CIRCLE = new Circle(-2, 3, 2);
+     public static final Rectangle RECTANGLE = new Rectangle(new PointDouble(-3, 0), new PointDouble(7, 8));
 
      public static void main(String[] args) {
           PointDouble[] points = new PointDouble[8];
@@ -35,14 +35,14 @@ public class Main {
      }
 
      public static SimpleColor getColor(double x, double y) {
-          if (!line.isPointAboveLine(x, y)) {
-               if (!rectangle.isPointInside(x, y) || circle.isPointInside(x, y)) {
+          if (!LINE.isPointAboveLine(x, y)) {
+               if (!RECTANGLE.isPointInside(x, y) || CIRCLE.isPointInside(x, y)) {
                     return SimpleColor.BLUE;
                }
                return SimpleColor.ORANGE;
-          } else if (!rectangle.isPointInside(x, y)) {
+          } else if (!RECTANGLE.isPointInside(x, y)) {
                return SimpleColor.WHITE;
-          } else if (circle.isPointInside(x, y) || imaginaryLine.isPointAboveLine(x, y)) {
+          } else if (CIRCLE.isPointInside(x, y) || IMAGINARY_LINE.isPointAboveLine(x, y)) {
                return SimpleColor.GREEN;
           } else {
                return SimpleColor.ORANGE;
