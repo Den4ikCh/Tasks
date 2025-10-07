@@ -48,9 +48,8 @@ public class Main {
                return SimpleColor.WHITE;
           } else if (CIRCLE.isPointInside(x, y) || IMAGINARY_LINE.isPointAboveLine(x, y)) {
                return SimpleColor.GREEN;
-          } else {
-               return SimpleColor.ORANGE;
           }
+          return SimpleColor.ORANGE;
      }
 
      public static void printColorForPoint(double x, double y) {
