@@ -24,13 +24,18 @@ public class Main {
           }
 
           double x = ConsoleUtils.getDouble("Введите x: ");
-          double y = ConsoleUtils.getDouble("Введите y: ");
-
-          if (-10 <= x && x <= 10 && -10 <= y && y <= 10) {
-               printColorForPoint(x, y);
-          } else {
-               System.out.print("Точка находится за пределами картинки.");
+          while (Math.abs(x) > 10) {
+               System.out.println("Введите число от -10 до 10.");
+               x = ConsoleUtils.getDouble("Введите x: ");
           }
+
+          double y = ConsoleUtils.getDouble("Введите y: ");
+          while (Math.abs(y) > 10) {
+               System.out.println("Введите число от -10 до 10.");
+               y = ConsoleUtils.getDouble("Введите y: ");
+          }
+
+          printColorForPoint(x, y);
      }
 
      public static SimpleColor getColor(double x, double y) {
