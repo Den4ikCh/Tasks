@@ -1,7 +1,6 @@
 package ru.vsu.chuprikov.task3;
 
 import ru.vsu.chuprikov.utils.ConsoleUtils;
-
 import java.util.Locale;
 
 public class Main {
