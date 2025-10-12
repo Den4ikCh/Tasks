@@ -10,18 +10,14 @@ public class Main {
      public static final Rectangle RECTANGLE = new Rectangle(new PointDouble(-3, 0), new PointDouble(7, 8));
 
      public static void main(String[] args) {
-          PointDouble[] points = new PointDouble[8];
-          points[0] = new PointDouble(-5, 3);
-          points[1] = new PointDouble(3, -3);
-          points[2] = new PointDouble(5, 2);
-          points[3] = new PointDouble(-0.5, 2.5);
-          points[4] = new PointDouble(-2, 0.5);
-          points[5] = new PointDouble(-2, 3);
-          points[6] = new PointDouble(-3.5, 3);
-          points[7] = new PointDouble(-1, 7);
-          for (PointDouble point : points) {
-               printColorForPoint(point.x, point.y);
-          }
+          printColorForPoint(-5, 3);
+          printColorForPoint(3, -3);
+          printColorForPoint(5, 2);
+          printColorForPoint(-0.5, 2.5);
+          printColorForPoint(-2, 0.5);
+          printColorForPoint(-2, 3);
+          printColorForPoint(-3.5, 3);
+          printColorForPoint(-1, 7);
 
           double x = ConsoleUtils.getDouble("Введите x: ");
           while (Math.abs(x) > 10) {
