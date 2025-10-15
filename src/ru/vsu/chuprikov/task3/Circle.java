@@ -1,9 +1,9 @@
 package ru.vsu.chuprikov.task3;
 
 public class Circle {
-    double r;
-    double x0;
-    double y0;
+    private double r;
+    private double x0;
+    private double y0;
 
     public Circle(double x0, double y0, double r) {
         this.r = r;

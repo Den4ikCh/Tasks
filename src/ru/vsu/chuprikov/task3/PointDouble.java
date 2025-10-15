@@ -1,8 +1,8 @@
 package ru.vsu.chuprikov.task3;
 
 public class PointDouble {
-    double x;
-    double y;
+    private double x;
+    private double y;
 
     public PointDouble(double x, double y) {
         this.x = x;

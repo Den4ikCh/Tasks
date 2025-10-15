@@ -1,18 +1,18 @@
 package ru.vsu.chuprikov.task3;
 
 public class Rectangle {
-    double x0;
-    double x1;
-    double y0;
-    double y1;
-    double height;
-    double width;
+    private double x0;
+    private double x1;
+    private double y0;
+    private double y1;
+    private double height;
+    private double width;
 
     public Rectangle(PointDouble p0, PointDouble p1) {
-        this.x0 = Math.min(p0.x, p1.x);
-        this.x1 = Math.max(p0.x, p1.x);
-        this.y0 = Math.min(p0.y, p1.y);
-        this.y1 = Math.max(p0.y, p1.y);
+        this.x0 = Math.min(p0.getX(), p1.getX());
+        this.x1 = Math.max(p0.getX(), p1.getX());
+        this.y0 = Math.min(p0.getY(), p1.getY());
+        this.y1 = Math.max(p0.getY(), p1.getY());
         height = this.y1 - this.y0;
         width = this.x1 - this.x0;
     }

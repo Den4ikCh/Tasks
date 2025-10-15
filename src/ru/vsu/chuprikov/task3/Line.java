@@ -1,8 +1,8 @@
 package ru.vsu.chuprikov.task3;
 
 public class Line {
-    double k;
-    double b;
+    private double k;
+    private double b;
 
     public Line(double b) {
         this(0, b);
