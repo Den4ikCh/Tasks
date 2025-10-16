@@ -32,7 +32,8 @@ public class Main {
         String numbers = "";
         int n = 1;
         while (numbers.length() < k) {
-            numbers += n++;
+            numbers += n;
+            n++;
         }
         return numbers.charAt(k - 1);
     }
