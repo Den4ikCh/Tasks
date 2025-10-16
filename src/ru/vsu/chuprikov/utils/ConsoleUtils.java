@@ -33,7 +33,7 @@ public class ConsoleUtils {
             if (in.hasNextDouble()) {
                 result = in.nextDouble();
                 if (result <= 0) {
-                    System.out.println("Введено отрицательное число.");
+                    System.out.println("Введённое число не является положительным.");
                     in.nextLine();
                 }
                 else {
@@ -102,7 +102,7 @@ public class ConsoleUtils {
             if (in.hasNextInt()) {
                 result = in.nextInt();
                 if (result <= 0) {
-                    System.out.println("Введено отрицательное число.");
+                    System.out.println("Введённое число не является положительным.");
                     in.nextLine();
                 }
                 else {
@@ -127,7 +127,7 @@ public class ConsoleUtils {
             if (in.hasNextLong()) {
                 result = in.nextLong();
                 if (result <= 0) {
-                    System.out.println("Введено отрицательное число.");
+                    System.out.println("Введённое число не является положительным.");
                     in.nextLine();
                 }
                 else {

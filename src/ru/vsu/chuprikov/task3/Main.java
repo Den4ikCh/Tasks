@@ -7,7 +7,7 @@ public class Main {
      public static final Line IMAGINARY_LINE = new Line(3);
      public static final Line LINE = new Line(4, 6);
      public static final Circle CIRCLE = new Circle(-2, 3, 2);
-     public static final Rectangle RECTANGLE = new Rectangle(new PointDouble(-3, 0), new PointDouble(7, 8));
+     public static final Rectangle RECTANGLE = new Rectangle(new PointDouble(-3, 0), 8, 10);
 
      public static void main(String[] args) {
           printColorForPoint(-5, 3);
