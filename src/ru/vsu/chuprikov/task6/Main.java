@@ -36,6 +36,6 @@ public class Main {
     }
 
     public static double getNext(int n, double previous, double x) {
-        return previous * (-x) / n;
+        return -previous * x / n;
     }
 }
