@@ -13,16 +13,16 @@ public class Main {
     }
 
     public static void testArrays() {
-        int[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
-        int[] array2 = {1, 2, 3, 4, 5, 6, 7, 1, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
-        int[] array3 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
-        int[] array4 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
-        int[] array5 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
-        int[] array6 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
-        int[] array7 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
-        int[] array8 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
-        int[] array9 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
-        int[] array10 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+        int[] array = {3, 3, 4, 8, 8, 10, 7, 4, 10, 7, 7, 4, 3, 3, 8, 9, 1};                    //Пример из PDF-файла
+        int[] array2 = {10, 5, 5, 3};                                                           //Пример из PDF-файла
+        int[] array3 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}; //Полностью возрастающая последовательность
+        int[] array4 = {20, 19, 18, 17, 15, 14, 14, 13, 12, 9, 9, 9, 8, 7, 6, 4, 4, 3, 2, 1};   //Полностью убывающая последовательность
+        int[] array5 = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};             //Яма на всю последовательность
+        int[] array6 = {1, 3, 5, 7, 9, 8, 6, 4, 2, 1, 3, 5, 7, 0, -100, -1000};                 //Две горы
+        int[] array7 = {5, 4, 3, 2, 1, 2, 3, 4, 5, 4, 3, 2, 1};                                 //W-образная последовательность
+        int[] array8 = {-10, -9, 0, 10, 9, 6, 6, 7, 8, 9, 9, 8, 0, -1, -4, -3, 0, 5, 10, 2};    //Три горы
+        int[] array9 = {1, 2, 1, 2, 1, 2, 1, 2, 1};                                             //Чередующаяся последовательность
+        int[] array10 = {1, 1, 2, 3, 4, 5, 6, 7, 7, 5, 3, 2, -5, -10};                          //Гора на всю последовательность
         printArray(solution(array));
         printArray(solution(array2));
         printArray(solution(array3));
@@ -56,43 +56,34 @@ public class Main {
 
     public static int[] solution(int[] array) {
         int position = 0, currentPosition = 0;
-        int count = 1, currentCount = 1;
-        for (int i = 1; i < array.length; i++) {
-            if (!arrayContains(copyOfRange(array, currentPosition, i), array[i])) {
+        int count = 1;
+        int indexFrom = 1;
+        while (array[indexFrom] == array[indexFrom - 1] && indexFrom < array.length - 1) {
+            indexFrom++;
+        }
+        int currentCount = indexFrom;
+        boolean isDown = array[indexFrom] < array[indexFrom - 1];
+        for (int i = indexFrom; i < array.length; i++) {
+            if (isDown || array[i] >= array[i - 1]) {
                 currentCount++;
-            }
-            else {
-                if (currentCount >= count) {
-                    position = currentPosition;
-                    count = currentCount;
+                if (isDown && array[i] > array[i - 1]) {
+                    isDown = false;
                 }
-                currentPosition = getIndexOfElement(copyOfRange(array, currentPosition, i), array[i]) + 1;
-                currentCount = i - currentPosition + 1;
+            } else {
+                if (currentCount > count) {
+                    count = currentCount;
+                    position = currentPosition;
+                }
+                currentPosition = i - 1;
+                currentCount = 2;
+                isDown = array[i] <= array[i - 1];
             }
         }
-        if (currentCount >= count) {
-            position = currentPosition;
+        if (currentCount > count) {
             count = currentCount;
+            position = currentPosition;
         }
-        return new int[] {position, count};
-    }
-
-    public static boolean arrayContains(int[] array, int search) {
-        for (int element : array) {
-            if (element == search) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public static int getIndexOfElement(int[] array, int search) {
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] == search) {
-                return i;
-            }
-        }
-        return -1;
+        return copyOfRange(array, position, position + count);
     }
 
     public static int[] copyOfRange(int[] array, int from, int to) {
