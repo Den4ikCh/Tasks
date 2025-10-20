@@ -1,14 +1,10 @@
 package ru.vsu.chuprikov.task8;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 
-public class Main {
-    public static void main(String[] args) {
-        InputArgs inputArgs = parseCmdArgs(args);
-        int[][] matrix = readMatrixFromFile(inputArgs.inputFile);
-        printResult(matrix, inputArgs.outputFile);
-    }
-
+public class Matrix {
     public static int[][] readMatrixFromFile(String filename) {
         int[][] matrix = {};
         String path = "C:\\Scripts\\Java\\Tasks\\src\\ru\\vsu\\chuprikov\\task8\\";
@@ -44,91 +40,86 @@ public class Main {
                 }
             }
         }
-        catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        catch (Exception e) { }
         return matrix;
     }
 
-    public static void printResult(int[][] matrix, String filename) {
+    public static void printMatrix(int[][] matrix, String filename) {
         String path = "C:\\Scripts\\Java\\Tasks\\src\\ru\\vsu\\chuprikov\\task8\\";
         File file = new File(path + filename);
         try (FileWriter fileWriter = new FileWriter(file)) {
-            boolean result = isMatrixSorted(matrix);
-            if (result) {
-                fileWriter.write("Элементы матрицы образуют упорядоченную последовательность.");
-            } else {
-                fileWriter.write("Элементы матрицы не образуют упорядоченную последовательность.");
+            for (int row = 0; row < matrix.length; row++) {
+                for (int column = 0; column < matrix[row].length; column++) {
+                    fileWriter.write(String.valueOf(matrix[row][column]));
+                    if (column != matrix[0].length - 1) {
+                        fileWriter.write(' ');
+                    } else if (row != matrix.length - 1) {
+                        fileWriter.write('\n');
+                    }
+                }
             }
         }
         catch (Exception e) { }
     }
 
-    public static InputArgs parseCmdArgs(String[] args) {
-        String input = null;
-        String output = null;
-        for (String arg : args) {
-            switch (arg) {
-                case "-i":
-                case "--input-file=":
-                    input = "";
-                    break;
-                case "-o":
-                case "--output-file=":
-                    output = "";
-                    break;
-                default:
-                    if (input == "") {
-                        input = arg;
-                    } else if (output == "") {
-                        output = arg;
-                    }
-            }
-        }
-        return new InputArgs(input, output);
-    }
-
     public static boolean isMatrixSorted(int[][] matrix) {
         int row = 0, column = 0;
-        int rowNext = 0, columnNext = 0;
-        if (matrix.length != 1) {
-            rowNext++;
-        } else if (matrix[0].length != 1){
-            columnNext++;
+        int[] array = new int[matrix.length * matrix[0].length];
+        array[0] = matrix[0][0];
+        if (matrix.length > 1) {
+            row++;
+        } else if (matrix[0].length > 1) {
+            column++;
         }
-        boolean isGrowing = matrix[rowNext][columnNext] > matrix[row][column];
+        int index = 1;
         boolean isUp = true;
         while (row != matrix.length - 1 || column != matrix[0].length - 1) {
-            if ((matrix[rowNext][columnNext] > matrix[row][column]) != isGrowing) {
-                return false;
-            }
-            row = rowNext;
-            column = columnNext;
+            array[index] = matrix[row][column];
+            index++;
             if (isUp) {
                 if (row == 0) {
-                    columnNext++;
+                    column++;
                     isUp = false;
                 } else if (column + 1 == matrix[0].length) {
-                    rowNext++;
+                    row++;
                     isUp = false;
                 }
                 else {
-                    rowNext--;
-                    columnNext++;
+                    row--;
+                    column++;
                 }
             }
             else {
                 if (row + 1 == matrix.length) {
-                    columnNext++;
+                    column++;
                     isUp = true;
                 } else if (column == 0) {
-                    rowNext++;
+                    row++;
                     isUp = true;
                 }
                 else {
-                    rowNext++;
-                    columnNext--;
+                    row++;
+                    column--;
                 }
+            }
+        }
+        if (index != array.length) {
+            array[index] = matrix[row][column];
+        }
+        return isArraySorted(array);
+    }
+
+    public static boolean isArraySorted(int[] array) {
+        if (array.length == 1) {
+            return true;
+        }
+        boolean isGrowing = array[1] > array[0];
+        if (array[1] == array[0]) {
+            return false;
+        }
+        for (int i = 2; i < array.length; i++) {
+            if ((array[i] > array[i - 1]) != isGrowing || array[i] == array[i - 1]) {
+                return false;
             }
         }
         return true;
