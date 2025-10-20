@@ -31,15 +31,22 @@ public class Main {
             int index = 0;
             for (int i = 0; i < row; i++) {
                 for (int j = 0; j < column; j++) {
+                    String number = "";
                     while (array[index] < '0' || array[index] > '9') {
                         index++;
                     }
-                    matrix[i][j] = array[index] - '0';
+                    while (index < array.length && array[index] >= '0' && array[index] <= '9') {
+                        number += array[index];
+                        index++;
+                    }
+                    matrix[i][j] = Integer.parseInt(number);
                     index++;
                 }
             }
         }
-        catch (Exception e) { }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
         return matrix;
     }
 
