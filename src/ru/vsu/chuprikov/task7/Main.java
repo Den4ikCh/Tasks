@@ -44,8 +44,6 @@ public class Main {
     }
 
     public static int[] readArrayFromConsole() {
-        Scanner in = new Scanner(System.in);
-        Locale.setDefault(Locale.US);
         int n = getPositiveInt("Введите длину массива: ");
         int[] array = new int[n];
         for (int i = 0; i < n; i++) {

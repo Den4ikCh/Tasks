@@ -1,6 +1,6 @@
 package ru.vsu.chuprikov.task3;
 
-import ru.vsu.chuprikov.utils.ConsoleUtils;
+import static ru.vsu.chuprikov.utils.ConsoleUtils.*;
 import java.util.Locale;
 
 public class Main {
@@ -19,16 +19,16 @@ public class Main {
           printColorForPoint(-3.5, 3);
           printColorForPoint(-1, 7);
 
-          double x = ConsoleUtils.getDouble("Введите x: ");
+          double x = getDouble("Введите x: ");
           while (Math.abs(x) > 10) {
                System.out.println("Введите число от -10 до 10.");
-               x = ConsoleUtils.getDouble("Введите x: ");
+               x = getDouble("Введите x: ");
           }
 
-          double y = ConsoleUtils.getDouble("Введите y: ");
+          double y = getDouble("Введите y: ");
           while (Math.abs(y) > 10) {
                System.out.println("Введите число от -10 до 10.");
-               y = ConsoleUtils.getDouble("Введите y: ");
+               y = getDouble("Введите y: ");
           }
 
           printColorForPoint(x, y);

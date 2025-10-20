@@ -7,6 +7,10 @@ public class Main {
         double x = getDouble("Введите x: ");
         int n = getPositiveInt("Введите n: ");
         double e = getPositiveDouble("Введите e: ");
+        while (e >= 1) {
+            System.out.println("Необходимо ввести положительное число, меньшее 1.");
+            e = getPositiveDouble("Введите e: ");
+        }
         System.out.printf("Сумма первых %d слагаемых равна %.5f.\n", n, getSumOfN(n, x));
         System.out.printf("Сумма слагаемых, больших e = %.1f равна %.5f.\n", e, getSumOfTermsMoreThan(x, e));
         System.out.printf("Сумма слагаемых, больших e / 10 = %.1f равна %.5f.\n", e / 10, getSumOfTermsMoreThan(x, e / 10));

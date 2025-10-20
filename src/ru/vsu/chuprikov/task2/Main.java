@@ -2,7 +2,7 @@ package ru.vsu.chuprikov.task2;
 
 import java.util.Locale;
 
-import ru.vsu.chuprikov.utils.ConsoleUtils;
+import static ru.vsu.chuprikov.utils.ConsoleUtils.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -34,10 +34,10 @@ public class Main {
 
     public static Circle getInfoAboutCircle(int index) {
         System.out.printf("Введите координаты центра %d-й окружности:\n", index);
-        double x = ConsoleUtils.getDouble("Введите x координату: ");
-        double y = ConsoleUtils.getDouble("Введите y координату: ");
+        double x = getDouble("Введите x координату: ");
+        double y = getDouble("Введите y координату: ");
         System.out.printf("Введите радиус %d-й окружности.\n", index);
-        double r = ConsoleUtils.getPositiveDouble("Введите радиус: ");
+        double r = getPositiveDouble("Введите радиус: ");
         return new Circle(x, y, r);
     }
 

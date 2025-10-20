@@ -1,35 +1,27 @@
 package ru.vsu.chuprikov.task5;
 
-import ru.vsu.chuprikov.utils.ConsoleUtils;
-
-import java.util.Scanner;
+import static ru.vsu.chuprikov.utils.ConsoleUtils.*;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        System.out.print("Что вы хотите нарисовать?\n1. Параллелограмм;\n2. Горы.\nВведите цифру: ");
+        System.out.print("Что вы хотите нарисовать?\n1. Параллелограмм;\n2. Горы.\n");
         int choice;
         while (true) {
-            if (in.hasNextInt()) {
-                choice = in.nextInt();
-                if (choice < 1 || choice > 2) {
-                    System.out.println("Введите 1 либо 2: ");
-                    continue;
-                }
-                break;
-            } else {
-                System.out.print("Неверный формат числа, попробуйте ещё раз: ");
-                in.nextLine();
+            choice = getInt("Введите цифру: ");
+            if (choice < 1 || choice > 2) {
+                System.out.println("Введите 1 либо 2: ");
+                continue;
             }
+            break;
         }
         switch (choice) {
             case 1: {
-                int s = ConsoleUtils.getIntMoreThan("Введите длину стороны параллелограмма: ", 2);
+                int s = getIntMoreThan("Введите длину стороны параллелограмма: ", 2);
                 paintParallelogram(s);
                 break;
             }
             case 2: {
-                int s = ConsoleUtils.getPositiveInt("Введите высоту средней горы: ");
+                int s = getPositiveInt("Введите высоту средней горы: ");
                 paintMountains(s);
                 break;
             }
