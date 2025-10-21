@@ -1,6 +1,6 @@
 package ru.vsu.chuprikov.task3;
 
-import static ru.vsu.chuprikov.utils.ConsoleUtils.*;
+import ru.vsu.chuprikov.utils.ConsoleUtils;
 import java.util.Locale;
 
 public class Main {
@@ -19,16 +19,16 @@ public class Main {
           printColorForPoint(-3.5, 3);
           printColorForPoint(-1, 7);
 
-          double x = getDouble("Введите x: ");
+          double x = ConsoleUtils.getDouble("Введите x: ");
           while (Math.abs(x) > 10) {
                System.out.println("Введите число от -10 до 10.");
-               x = getDouble("Введите x: ");
+               x = ConsoleUtils.getDouble("Введите x: ");
           }
 
-          double y = getDouble("Введите y: ");
+          double y = ConsoleUtils.getDouble("Введите y: ");
           while (Math.abs(y) > 10) {
                System.out.println("Введите число от -10 до 10.");
-               y = getDouble("Введите y: ");
+               y = ConsoleUtils.getDouble("Введите y: ");
           }
 
           printColorForPoint(x, y);
@@ -40,9 +40,11 @@ public class Main {
                     return SimpleColor.BLUE;
                }
                return SimpleColor.ORANGE;
-          } else if (!RECTANGLE.isPointInside(x, y)) {
+          }
+          if (!RECTANGLE.isPointInside(x, y)) {
                return SimpleColor.WHITE;
-          } else if (CIRCLE.isPointInside(x, y) || IMAGINARY_LINE.isPointAboveLine(x, y)) {
+          }
+          if (CIRCLE.isPointInside(x, y) || IMAGINARY_LINE.isPointAboveLine(x, y)) {
                return SimpleColor.GREEN;
           }
           return SimpleColor.ORANGE;

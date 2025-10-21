@@ -1,9 +1,9 @@
 package ru.vsu.chuprikov.task7;
 
+import ru.vsu.chuprikov.utils.ConsoleUtils;
+
 import java.util.Locale;
 import java.util.Scanner;
-
-import static ru.vsu.chuprikov.utils.ConsoleUtils.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -44,10 +44,10 @@ public class Main {
     }
 
     public static int[] readArrayFromConsole() {
-        int n = getPositiveInt("Введите длину массива: ");
+        int n = ConsoleUtils.getPositiveInt("Введите длину массива: ");
         int[] array = new int[n];
         for (int i = 0; i < n; i++) {
-            array[i] = getInt(String.format("Введите %d-й элемент массива: ", i));
+            array[i] = ConsoleUtils.getInt(String.format("Введите %d-й элемент массива: ", i));
         }
         return array;
     }

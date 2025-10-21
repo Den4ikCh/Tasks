@@ -6,7 +6,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import static ru.vsu.chuprikov.task8.Matrix.*;
 
 
 public class WindowApp extends JFrame {
@@ -118,7 +117,7 @@ public class WindowApp extends JFrame {
 
         if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             try {
-                int[][] array = readMatrixFromFile(fileChooser.getSelectedFile().getName());
+                int[][] array = Matrix.readMatrixFromFile(fileChooser.getSelectedFile().getName());
                 displayArrayInTable(array);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, "Ошибка загрузки файла: " + ex.getMessage());
@@ -144,7 +143,7 @@ public class WindowApp extends JFrame {
         if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
             try {
                 int[][] array = readArrayFromTable();
-                printMatrix(array, fileChooser.getSelectedFile().getName());
+                Matrix.printMatrix(array, fileChooser.getSelectedFile().getName());
                 JOptionPane.showMessageDialog(this, "Файл успешно сохранен");
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, "Ошибка сохранения файла: " + ex.getMessage());
@@ -156,7 +155,7 @@ public class WindowApp extends JFrame {
         try {
             int[][] array = readArrayFromTable();
 
-            boolean result = isMatrixSorted(array);
+            boolean result = Matrix.isMatrixSorted(array);
 
             String message = result ? "Элементы матрицы образуют упорядоченную последовательность."
                     : "Элементы матрицы не образуют упорядоченную последовательность.";

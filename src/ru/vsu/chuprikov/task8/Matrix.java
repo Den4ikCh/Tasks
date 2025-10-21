@@ -28,12 +28,19 @@ public class Matrix {
             for (int i = 0; i < row; i++) {
                 for (int j = 0; j < column; j++) {
                     String number = "";
+                    boolean isPositive = true;
                     while (array[index] < '0' || array[index] > '9') {
+                        if (array[index] == '-') {
+                            isPositive = false;
+                        }
                         index++;
                     }
                     while (index < array.length && array[index] >= '0' && array[index] <= '9') {
                         number += array[index];
                         index++;
+                    }
+                    if (!isPositive) {
+                        number = "-";
                     }
                     matrix[i][j] = Integer.parseInt(number);
                     index++;

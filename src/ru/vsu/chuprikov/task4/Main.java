@@ -1,10 +1,10 @@
 package ru.vsu.chuprikov.task4;
 
-import static ru.vsu.chuprikov.utils.ConsoleUtils.*;
+import ru.vsu.chuprikov.utils.ConsoleUtils;
 
 public class Main {
     public static void main(String[] args) {
-        long k = getPositiveLong("Введите натуральное число: ");
+        long k = ConsoleUtils.getPositiveLong("Введите натуральное число: ");
         System.out.println(getCurrentNumber(k));
         if (k < 1e5) {
             System.out.println(testOnString((int)k));

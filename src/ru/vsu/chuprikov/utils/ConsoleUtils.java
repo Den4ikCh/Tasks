@@ -141,4 +141,39 @@ public class ConsoleUtils {
         }
         return result;
     }
+
+    public static InputArgs parseCmdArgs(String[] args) {
+        String input = null;
+        String output = null;
+        for (String arg : args) {
+            switch (arg) {
+                case "-i":
+                    input = "";
+                    break;
+                case "-o":
+                    output = "";
+                    break;
+                default:
+                    if (input == "") {
+                        input = arg;
+                    } else if (output == "") {
+                        output = arg;
+                    }
+
+                    if (arg.startsWith("--input-file=")) {
+                        input = arg.substring("--input-file=".length());
+                    } else if (arg.startsWith("--output-file=")) {
+                        output = arg.substring("--output-file=".length());
+                    }
+            }
+        }
+        if (input == null || output == null || input == "" || output == "") {
+            System.err.println("Необходимо ввести названия входных и выходных файлов.");
+            System.exit(1);
+        } else if (!input.endsWith(".txt") || !output.endsWith(".txt")) {
+            System.err.println("Поддерживаются только текстовые файлы расширения .txt.");
+            System.exit(1);
+        }
+        return new InputArgs(input, output);
+    }
 }

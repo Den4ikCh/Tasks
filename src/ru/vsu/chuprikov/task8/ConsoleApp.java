@@ -1,12 +1,14 @@
 package ru.vsu.chuprikov.task8;
 
+import ru.vsu.chuprikov.utils.ConsoleUtils;
+import ru.vsu.chuprikov.utils.InputArgs;
+
 import java.io.*;
-import static ru.vsu.chuprikov.task8.Matrix.*;
 
 public class ConsoleApp {
     public static void main(String[] args) {
-        InputArgs inputArgs = parseCmdArgs(args);
-        int[][] matrix = readMatrixFromFile(inputArgs.inputFile);
+        InputArgs inputArgs = ConsoleUtils.parseCmdArgs(args);
+        int[][] matrix = Matrix.readMatrixFromFile(inputArgs.inputFile);
         printResult(matrix, inputArgs.outputFile);
     }
 
@@ -14,7 +16,7 @@ public class ConsoleApp {
         String path = "C:\\Scripts\\Java\\Tasks\\src\\ru\\vsu\\chuprikov\\task8\\";
         File file = new File(path + filename);
         try (FileWriter fileWriter = new FileWriter(file)) {
-            boolean result = isMatrixSorted(matrix);
+            boolean result = Matrix.isMatrixSorted(matrix);
             if (result) {
                 fileWriter.write("Элементы матрицы образуют упорядоченную последовательность.");
             } else {
@@ -22,29 +24,5 @@ public class ConsoleApp {
             }
         }
         catch (Exception e) { }
-    }
-
-    public static InputArgs parseCmdArgs(String[] args) {
-        String input = null;
-        String output = null;
-        for (String arg : args) {
-            switch (arg) {
-                case "-i":
-                case "--input-file=":
-                    input = "";
-                    break;
-                case "-o":
-                case "--output-file=":
-                    output = "";
-                    break;
-                default:
-                    if (input == "") {
-                        input = arg;
-                    } else if (output == "") {
-                        output = arg;
-                    }
-            }
-        }
-        return new InputArgs(input, output);
     }
 }

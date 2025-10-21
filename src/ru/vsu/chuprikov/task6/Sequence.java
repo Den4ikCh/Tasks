@@ -28,7 +28,7 @@ public class Sequence {
             if (Math.abs(current) > e / 10) {
                 sumOfTernsMoreThanE10 += current;
             }
-            current = getNext(i, current, x);
+            current = Sequence.getNext(i, current, x);
         }
     }
 

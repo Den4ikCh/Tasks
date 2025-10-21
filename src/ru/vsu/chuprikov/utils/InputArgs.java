@@ -1,4 +1,4 @@
-package ru.vsu.chuprikov.task8;
+package ru.vsu.chuprikov.utils;
 
 public class InputArgs {
     public String inputFile;

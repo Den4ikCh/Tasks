@@ -1,15 +1,15 @@
 package ru.vsu.chuprikov.task6;
 
-import static ru.vsu.chuprikov.utils.ConsoleUtils.*;
+import ru.vsu.chuprikov.utils.ConsoleUtils;
 
 public class Main {
     public static void main(String[] args) {
-        double x = getDouble("Введите x: ");
-        int n = getPositiveInt("Введите n: ");
-        double e = getPositiveDouble("Введите e: ");
+        double x = ConsoleUtils.getDouble("Введите x: ");
+        int n = ConsoleUtils.getPositiveInt("Введите n: ");
+        double e = ConsoleUtils.getPositiveDouble("Введите e: ");
         while (e >= 1) {
             System.out.println("Необходимо ввести положительное число, меньшее 1.");
-            e = getPositiveDouble("Введите e: ");
+            e = ConsoleUtils.getPositiveDouble("Введите e: ");
         }
         Sequence sequence = new Sequence(n, x, e);
         System.out.printf("Сумма первых %d слагаемых равна %.5f.\n", n, sequence.getSumOfN());
