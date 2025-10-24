@@ -3,12 +3,11 @@ package ru.vsu.chuprikov.task8;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 
 
 public class WindowApp extends JFrame {
+    private String path = "C:\\Scripts\\Java\\Tasks\\src\\ru\\vsu\\chuprikov\\task8";
     private JTable table;
     private DefaultTableModel tableModel;
     private JTextField rowsField;
@@ -56,33 +55,10 @@ public class WindowApp extends JFrame {
         add(controlPanel, BorderLayout.NORTH);
         add(scrollPane, BorderLayout.CENTER);
 
-        createTableBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                createTable();
-            }
-        });
-
-        loadBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                loadFromFile();
-            }
-        });
-
-        saveBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                saveToFile();
-            }
-        });
-
-        checkBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                checkOrdering();
-            }
-        });
+        createTableBtn.addActionListener(e -> createTable());
+        loadBtn.addActionListener(e -> loadFromFile());
+        saveBtn.addActionListener(e -> saveToFile());
+        checkBtn.addActionListener(e -> checkOrdering());
     }
 
     private void createTable() {
@@ -101,11 +77,10 @@ public class WindowApp extends JFrame {
     }
 
     private void loadFromFile() {
-        JFileChooser fileChooser = new JFileChooser("C:\\Scripts\\Java\\Tasks\\src\\ru\\vsu\\chuprikov\\task8");
+        JFileChooser fileChooser = new JFileChooser(path);
         fileChooser.setFileFilter(new javax.swing.filechooser.FileFilter() {
             @Override
             public boolean accept(File file) {
-                // Показывать папки и файлы с расширением .txt
                 return file.isDirectory() || file.getName().toLowerCase().endsWith(".txt");
             }
 
@@ -126,11 +101,10 @@ public class WindowApp extends JFrame {
     }
 
     private void saveToFile() {
-        JFileChooser fileChooser = new JFileChooser("C:\\Scripts\\Java\\Tasks\\src\\ru\\vsu\\chuprikov\\task8");
+        JFileChooser fileChooser = new JFileChooser(path);
         fileChooser.setFileFilter(new javax.swing.filechooser.FileFilter() {
             @Override
             public boolean accept(File file) {
-                // Показывать папки и файлы с расширением .txt
                 return file.isDirectory() || file.getName().toLowerCase().endsWith(".txt");
             }
 

@@ -74,7 +74,7 @@ public class ListUtils {
                     number += c;
                 } else if (c == '-') {
                     number = "-";
-                } else {
+                } else if (number != "") {
                     list.add(Integer.parseInt(number));
                     number = "";
                 }
