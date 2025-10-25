@@ -8,6 +8,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class ListUtils {
+    static String path = "C:\\Scripts\\Java\\Tasks\\src\\ru\\vsu\\chuprikov\\task9\\";
+
     public static List<Integer> createNewList(List<Integer> list) {
         List<Integer> count = new ArrayList<>();
         for (Integer number : list) {
@@ -63,7 +65,6 @@ public class ListUtils {
 
     public static List<Integer> readListFromFile(String fileName) {
         List<Integer> list = new ArrayList<>();
-        String path = "C:\\Scripts\\Java\\Tasks\\src\\ru\\vsu\\chuprikov\\task9\\";
         File file = new File(path + fileName);
         try (FileReader fileReader = new FileReader(file)) {
             String number = "";
@@ -86,7 +87,6 @@ public class ListUtils {
     }
 
     public static void printList(String fileName, List<Integer> list) {
-        String path = "C:\\Scripts\\Java\\Tasks\\src\\ru\\vsu\\chuprikov\\task9\\";
         File file = new File(path + fileName);
         try (FileWriter fileWriter = new FileWriter(file)) {
             fileWriter.write(list.toString());

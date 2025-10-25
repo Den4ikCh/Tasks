@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class WindowApp extends JFrame {
-    private String path = "C:\\Scripts\\Java\\Tasks\\src\\ru\\vsu\\chuprikov\\task9";
+    String path = "C:\\Scripts\\Java\\Tasks\\src\\ru\\vsu\\chuprikov\\task9";
     JTextArea inputArea;
     JTextArea resultArea;
     JButton loadFromFile;

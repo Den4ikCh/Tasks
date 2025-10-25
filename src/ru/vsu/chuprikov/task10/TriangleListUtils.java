@@ -2,17 +2,21 @@ package ru.vsu.chuprikov.task10;
 
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.security.spec.RSAOtherPrimeInfo;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TriangleListUtils {
+    static String path = "C:\\Scripts\\Java\\Tasks\\src\\ru\\vsu\\chuprikov\\task10\\";
+
     public static List<List<Triangle>> getSimilarTriangles(List<Triangle> list) {
         List<List<Triangle>> result = new ArrayList<>();
         while (list.size() > 0) {
             List<Triangle> temp = new ArrayList<>();
             temp.add(list.remove(0));
             for (int i = 0; i < list.size(); i++) {
-                if (temp.getFirst().isSimilarToTriangle(list.get(i))) {
+                if (temp.get(0).isSimilarToTriangle(list.get(i))) {
                     temp.add(list.remove(i));
                     i--;
                 }
@@ -22,13 +26,30 @@ public class TriangleListUtils {
         return result;
     }
 
+    public static void printTriangles(List<List<Triangle>> list, String fileName) {
+        File file = new File(path + fileName);
+        try (FileWriter fileWriter = new FileWriter(file)) {
+            for (int i = 0; i < list.size(); i++) {
+                fileWriter.write(String.format("%d-й набор подобных треугольников: ", i + 1));
+                for (int j = 0; j < list.get(i).size(); j++) {
+                    fileWriter.write(list.get(i).get(j).toString());
+                    if (j != list.get(i).size() - 1) {
+                        fileWriter.write(", ");
+                    } else {
+                        fileWriter.write(".\n");
+                    }
+                }
+            }
+        }
+        catch (Exception e) { }
+    }
+
     public static List<Triangle> readTrianglesFromFile(String fileName) {
-        String path = "C:\\Scripts\\Java\\Tasks\\src\\ru\\vsu\\chuprikov\\task10\\";
         File file = new File(path + fileName);
         List<Triangle> triangles = new ArrayList<>();
-        try (FileReader reader = new FileReader(file)) {
+        try (FileReader fileReader = new FileReader(file)) {
             char[] array = new char[(int) file.length()];
-            reader.read(array);
+            fileReader.read(array);
             int indexFrom = 0;
             int indexTo = 0;
             for (int i = 0; i < array.length; i++) {
