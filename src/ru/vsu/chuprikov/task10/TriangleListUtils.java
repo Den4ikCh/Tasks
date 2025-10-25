@@ -3,7 +3,6 @@ package ru.vsu.chuprikov.task10;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.security.spec.RSAOtherPrimeInfo;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +37,21 @@ public class TriangleListUtils {
                     } else {
                         fileWriter.write(".\n");
                     }
+                }
+            }
+        }
+        catch (Exception e) { }
+    }
+
+    public static void saveTrianglesToFile(List<Triangle> list, String fileName) {
+        File file = new File(path + fileName);
+        try (FileWriter fileWriter = new FileWriter(file)) {
+            for (int i = 0; i < list.size(); i++) {
+                fileWriter.write(list.get(i).getPointA().toString() + ' ');
+                fileWriter.write(list.get(i).getPointB().toString() + ' ');
+                fileWriter.write(list.get(i).getPointC().toString());
+                if (i != list.size() - 1) {
+                    fileWriter.write('\n');
                 }
             }
         }

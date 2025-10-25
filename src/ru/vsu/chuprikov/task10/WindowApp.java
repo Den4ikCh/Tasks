@@ -1,21 +1,21 @@
-package ru.vsu.chuprikov.task9;
-
-import ru.vsu.chuprikov.task8.Matrix;
+package ru.vsu.chuprikov.task10;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.io.File;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class WindowApp extends JFrame {
-    private String path = "C:\\Scripts\\Java\\Tasks\\src\\ru\\vsu\\chuprikov\\task9";
-    private JTextArea inputArea;
+    private String path = "C:\\Scripts\\Java\\Tasks\\src\\ru\\vsu\\chuprikov\\task10";
+    private JTable table;
+    private DefaultTableModel tableModel;
     private JTextArea resultArea;
     private JButton loadFromFile;
     private JButton saveToFile;
     private JButton printResult;
+    private JButton addRowButton;
 
     public WindowApp() {
         setTitle("Сортировка листа по встречаемости элементов");
@@ -31,36 +31,54 @@ public class WindowApp extends JFrame {
         mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         JPanel controlPanel = new JPanel(new FlowLayout());
+        addRowButton = new JButton("Добавить треугольник");
         loadFromFile = new JButton("Загрузить пример");
         saveToFile = new JButton("Сохранить");
-        printResult = new JButton("Проверить лист");
+        printResult = new JButton("Найти подобные");
+        controlPanel.add(addRowButton);
         controlPanel.add(loadFromFile);
         controlPanel.add(saveToFile);
         controlPanel.add(printResult);
 
-        JPanel inputPanel = new JPanel(new BorderLayout());
-        inputPanel.setBorder(BorderFactory.createTitledBorder("Введите числа через пробел:"));
-        inputArea = new JTextArea(5, 50);
-        inputArea.setFont(new Font("Monospaced", Font.PLAIN, 14));
-        JScrollPane inputScroll = new JScrollPane(inputArea);
-        inputPanel.add(inputScroll, BorderLayout.CENTER);
+        createTable();
+        JScrollPane scrollPane = new JScrollPane(table);
 
-        JPanel resultPanel = new JPanel(new BorderLayout());
+        JPanel resultPanel = new JPanel(new FlowLayout());
         resultPanel.setBorder(BorderFactory.createTitledBorder("Результат:"));
-        resultArea = new JTextArea(8, 50);
+        resultArea = new JTextArea(8, 100);
         resultArea.setFont(new Font("Monospaced", Font.PLAIN, 14));
         resultArea.setEditable(false);
         JScrollPane resultScroll = new JScrollPane(resultArea);
         resultPanel.add(resultScroll, BorderLayout.CENTER);
 
         mainPanel.add(controlPanel, BorderLayout.NORTH);
-        mainPanel.add(inputPanel, BorderLayout.CENTER);
+        mainPanel.add(scrollPane, BorderLayout.CENTER);
         mainPanel.add(resultPanel, BorderLayout.SOUTH);
         add(mainPanel);
 
         loadFromFile.addActionListener(e -> loadFromFile());
         saveToFile.addActionListener(e -> saveToFile());
         printResult.addActionListener(e -> printResult());
+        addRowButton.addActionListener(e -> addNewRow());
+    }
+
+    private void createTable() {
+        String[] columnNames = {"A x", "A y", "B x", "B y", "C x", "C y"};
+
+        tableModel = new DefaultTableModel(columnNames, 0) {
+            @Override
+            public Class<?> getColumnClass(int columnIndex) {
+                return Double.class;
+            }
+        };
+
+        table = new JTable(tableModel);
+        table.setRowHeight(25);
+        addNewRow();
+    }
+
+    private void addNewRow() {
+        tableModel.addRow(new Object[]{0, 0, 0, 0, 0, 0});
     }
 
     private void loadFromFile() {
@@ -79,8 +97,8 @@ public class WindowApp extends JFrame {
 
         if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             try {
-                List<Integer> list = ListUtils.readListFromFile(fileChooser.getSelectedFile().getName());
-                inputArea.setText(list.stream().map(String::valueOf).collect(Collectors.joining(" ")));
+                List<Triangle> list = TriangleListUtils.readTrianglesFromFile(fileChooser.getSelectedFile().getName());
+                setTrianglesToTable(list);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, "Ошибка загрузки файла: " + ex.getMessage());
             }
@@ -103,8 +121,8 @@ public class WindowApp extends JFrame {
 
         if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
             try {
-                List<Integer> list = readListFromWindow();
-                ListUtils.printList(fileChooser.getSelectedFile().getName(), list);
+                List<Triangle> list = readTrianglesFromTable();
+                TriangleListUtils.saveTrianglesToFile(list, fileChooser.getSelectedFile().getName());
             }
             catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, "Ошибка сохранения файла: " + ex.getMessage());
@@ -113,21 +131,50 @@ public class WindowApp extends JFrame {
     }
 
     private void printResult() {
-        List<Integer> result = ListUtils.createNewList(readListFromWindow());
-        resultArea.setText(result.toString());
+        List<Triangle> list = readTrianglesFromTable();
+        List<List<Triangle>> result = TriangleListUtils.getSimilarTriangles(list);
+        String resultText = "";
+        for (int i = 0; i < result.size(); i++) {
+            resultText += String.format("%d-й набор подобных треугольников: ", i + 1);
+            for (int j = 0; j < result.get(i).size(); j++) {
+                resultText += result.get(i).get(j).toString();
+                if (j != result.get(i).size() - 1) {
+                    resultText += ", ";
+                } else {
+                    resultText += ".\n";
+                }
+            }
+        }
+        resultArea.setText(resultText);
     }
 
-    private List<Integer> readListFromWindow() {
-        String input = inputArea.getText();
-        try {
-            return Arrays.stream(input.split(" "))
-                    .map(Integer::parseInt)
-                    .collect(Collectors.toList());
+    private List<Triangle> readTrianglesFromTable() {
+        List<Triangle> list = new ArrayList<>();
+        for (int i = 0; i < tableModel.getRowCount(); i++) {
+            PointDouble[] points = new PointDouble[3];
+            for (int j = 0; j < tableModel.getColumnCount(); j++) {
+                Double value = Double.parseDouble(tableModel.getValueAt(i, j).toString());
+                if (j % 2 == 0) {
+                    points[j / 2] = new PointDouble(value, 0);
+                } else {
+                    points[j / 2].setY(value);
+                }
+            }
+            list.add(new Triangle(points[0], points[1], points[2]));
         }
-        catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Неверный формат, введите только целые числа, через один пробел");
+        return list;
+    }
+
+    private void setTrianglesToTable(List<Triangle> triangles) {
+        tableModel.setRowCount(triangles.size());
+        for (int i = 0; i < triangles.size(); i++) {
+            int j = 0;
+            PointDouble[] points = {triangles.get(i).getPointA(), triangles.get(i).getPointB(), triangles.get(i).getPointC()};
+            for (PointDouble point : points) {
+                tableModel.setValueAt(point.getX(), i, j++);
+                tableModel.setValueAt(point.getY(), i, j++);
+            }
         }
-        return null;
     }
 
     public static void main(String[] args) {

@@ -148,7 +148,7 @@ public class WindowApp extends JFrame {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
                 Object value = tableModel.getValueAt(i, j);
-                if (value == null || value.toString().trim().isEmpty()) {
+                if (value == null) {
                     array[i][j] = 0;
                 } else {
                     array[i][j] = Integer.parseInt(value.toString());
