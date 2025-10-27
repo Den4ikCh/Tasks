@@ -49,6 +49,11 @@ public class WindowApp extends JFrame {
             }
         };
         table = new JTable(tableModel);
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                tableModel.setValueAt(0, i, j);
+            }
+        }
         JScrollPane scrollPane = new JScrollPane(table);
 
         setLayout(new BorderLayout());
@@ -71,6 +76,12 @@ public class WindowApp extends JFrame {
 
             tableModel.setRowCount(rows);
             tableModel.setColumnCount(cols);
+
+            for (int i = 0; i < rows; i++) {
+                for (int j = 0; j < cols; j++) {
+                    tableModel.setValueAt(0, i, j);
+                }
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Введите натуральное число");
         }
@@ -147,12 +158,8 @@ public class WindowApp extends JFrame {
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                Object value = tableModel.getValueAt(i, j);
-                if (value == null) {
-                    array[i][j] = 0;
-                } else {
-                    array[i][j] = Integer.parseInt(value.toString());
-                }
+                int value = Integer.parseInt(tableModel.getValueAt(i, j).toString());
+                array[i][j] = value;
             }
         }
 

@@ -1,5 +1,7 @@
 package ru.vsu.chuprikov.utils;
 
+import org.w3c.dom.ls.LSOutput;
+
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -147,10 +149,20 @@ public class ConsoleUtils {
         String output = null;
         for (String arg : args) {
             switch (arg) {
+                case "-help":
+                case "-h":
+                case "--help":
+                    printHelp();
+                    System.exit(0);
+                    break;
                 case "-i":
+                case "-input":
+                case "--input-file":
                     input = "";
                     break;
                 case "-o":
+                case "-output":
+                case "--output-file":
                     output = "";
                     break;
                 default:
@@ -159,12 +171,11 @@ public class ConsoleUtils {
                     } else if (output == "") {
                         output = arg;
                     }
-
-                    if (arg.startsWith("--input-file=")) {
-                        input = arg.substring("--input-file=".length());
-                    } else if (arg.startsWith("--output-file=")) {
-                        output = arg.substring("--output-file=".length());
-                    }
+            }
+            if (arg.startsWith("--input-file=")) {
+                input = arg.substring("--input-file=".length());
+            } else if (arg.startsWith("--output-file=")) {
+                output = arg.substring("--output-file=".length());
             }
         }
         if (input == null || output == null || input == "" || output == "") {
@@ -172,8 +183,15 @@ public class ConsoleUtils {
             System.exit(1);
         } else if (!input.endsWith(".txt") || !output.endsWith(".txt")) {
             System.err.println("Поддерживаются только текстовые файлы расширения .txt.");
-            System.exit(1);
+            System.exit(2);
         }
         return new InputArgs(input, output);
+    }
+
+    private static void printHelp() {
+        System.out.println("Параметры:");
+        System.out.println("Показать список параметров: -h, -help, --help");
+        System.out.println("Название входного файла: -i, -input, --input-file, --input-file=");
+        System.out.println("Название выходного файла: -o, -output, --output-file, --output-file=");
     }
 }

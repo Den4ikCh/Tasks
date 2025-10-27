@@ -5,9 +5,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 
 public class Matrix {
+    static String path = "C:\\Scripts\\Java\\Tasks\\src\\ru\\vsu\\chuprikov\\task8\\";
+
     public static int[][] readMatrixFromFile(String filename) {
         int[][] matrix = {};
-        String path = "C:\\Scripts\\Java\\Tasks\\src\\ru\\vsu\\chuprikov\\task8\\";
         File file = new File(path + filename);
         try (FileReader fileReader = new FileReader(file)) {
             char[] array = new char[(int) file.length()];
@@ -52,7 +53,6 @@ public class Matrix {
     }
 
     public static void printMatrix(int[][] matrix, String filename) {
-        String path = "C:\\Scripts\\Java\\Tasks\\src\\ru\\vsu\\chuprikov\\task8\\";
         File file = new File(path + filename);
         try (FileWriter fileWriter = new FileWriter(file)) {
             for (int row = 0; row < matrix.length; row++) {
