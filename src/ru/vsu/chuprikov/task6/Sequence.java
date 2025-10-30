@@ -13,10 +13,9 @@ public class Sequence {
         this.n = n;
         this.x = x;
         this.e = e;
-        solution();
     }
 
-    private void solution() {
+    public void solution() {
         double current = 1;
         for (int i = 1; i <= n || Math.abs(current) > e / 10; i++) {
             if (i <= n) {

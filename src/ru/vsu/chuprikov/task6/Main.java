@@ -12,6 +12,7 @@ public class Main {
             e = ConsoleUtils.getPositiveDouble("Введите e: ");
         }
         Sequence sequence = new Sequence(n, x, e);
+        sequence.solution();
         System.out.printf("Сумма первых %d слагаемых равна %.5f.\n", n, sequence.getSumOfN());
         System.out.printf("Сумма слагаемых, больших e = %.2f равна %.5f.\n", e, sequence.getSumOfTernsMoreThanE());
         System.out.printf("Сумма слагаемых, больших e / 10 = %.3f равна %.5f.\n", e / 10, sequence.getSumOfTernsMoreThanE10());
