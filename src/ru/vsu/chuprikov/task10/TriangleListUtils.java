@@ -1,5 +1,7 @@
 package ru.vsu.chuprikov.task10;
 
+import ru.vsu.chuprikov.utils.ConsoleUtils;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -76,11 +78,15 @@ public class TriangleListUtils {
             }
             triangles.add(readTriangleFromString(new String(array, indexFrom, array.length - indexFrom)));
         }
+        catch (TriangleFormatException e) {
+            ConsoleUtils.printError(e.getMessage());
+            System.exit(0);
+        }
         catch (Exception e) { }
         return triangles;
     }
 
-    public static Triangle readTriangleFromString(String input) {
+    public static Triangle readTriangleFromString(String input) throws TriangleFormatException {
         int indexFrom = 0;
         int indexTo = 0;
         PointDouble[] points = new PointDouble[3] ;

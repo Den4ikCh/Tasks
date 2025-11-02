@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -131,24 +132,28 @@ public class WindowApp extends JFrame {
     }
 
     private void printResult() {
-        List<Triangle> list = readTrianglesFromTable();
-        List<List<Triangle>> result = TriangleListUtils.getSimilarTriangles(list);
-        String resultText = "";
-        for (int i = 0; i < result.size(); i++) {
-            resultText += String.format("%d-й набор подобных треугольников: ", i + 1);
-            for (int j = 0; j < result.get(i).size(); j++) {
-                resultText += result.get(i).get(j).toString();
-                if (j != result.get(i).size() - 1) {
-                    resultText += ", ";
-                } else {
-                    resultText += ".\n";
+        try {
+            List<Triangle> list = readTrianglesFromTable();
+            List<List<Triangle>> result = TriangleListUtils.getSimilarTriangles(list);
+            String resultText = "";
+            for (int i = 0; i < result.size(); i++) {
+                resultText += String.format("%d-й набор подобных треугольников: ", i + 1);
+                for (int j = 0; j < result.get(i).size(); j++) {
+                    resultText += result.get(i).get(j).toString();
+                    if (j != result.get(i).size() - 1) {
+                        resultText += ", ";
+                    } else {
+                        resultText += ".\n";
+                    }
                 }
             }
+            resultArea.setText(resultText);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage() + ".");
         }
-        resultArea.setText(resultText);
     }
 
-    private List<Triangle> readTrianglesFromTable() {
+    private List<Triangle> readTrianglesFromTable() throws TriangleFormatException {
         List<Triangle> list = new ArrayList<>();
         for (int i = 0; i < tableModel.getRowCount(); i++) {
             PointDouble[] points = new PointDouble[3];
