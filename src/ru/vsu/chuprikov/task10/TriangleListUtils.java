@@ -60,7 +60,7 @@ public class TriangleListUtils {
         catch (Exception e) { }
     }
 
-    public static List<Triangle> readTrianglesFromFile(String fileName) {
+    public static List<Triangle> readTrianglesFromFile(String fileName) throws TriangleFormatException {
         File file = new File(path + fileName);
         List<Triangle> triangles = new ArrayList<>();
         try (FileReader fileReader = new FileReader(file)) {
@@ -77,12 +77,9 @@ public class TriangleListUtils {
                 }
             }
             triangles.add(readTriangleFromString(new String(array, indexFrom, array.length - indexFrom)));
-        }
-        catch (TriangleFormatException e) {
-            ConsoleUtils.printError(e.getMessage());
-            System.exit(0);
-        }
-        catch (Exception e) { }
+        } catch (TriangleFormatException e) {
+            throw e;
+        } catch (Exception e) { }
         return triangles;
     }
 

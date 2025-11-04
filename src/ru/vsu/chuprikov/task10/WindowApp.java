@@ -100,6 +100,8 @@ public class WindowApp extends JFrame {
             try {
                 List<Triangle> list = TriangleListUtils.readTrianglesFromFile(fileChooser.getSelectedFile().getName());
                 setTrianglesToTable(list);
+            } catch (TriangleFormatException ex) {
+                JOptionPane.showMessageDialog(this, "В данных, представленных в файле есть ошибки. " + ex.getMessage());
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, "Ошибка загрузки файла: " + ex.getMessage());
             }
