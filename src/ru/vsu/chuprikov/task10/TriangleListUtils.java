@@ -41,8 +41,9 @@ public class TriangleListUtils {
                     }
                 }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        catch (Exception e) { }
     }
 
     public static void saveTrianglesToFile(List<Triangle> list, String fileName) {
@@ -56,8 +57,9 @@ public class TriangleListUtils {
                     fileWriter.write('\n');
                 }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        catch (Exception e) { }
     }
 
     public static List<Triangle> readTrianglesFromFile(String fileName) throws TriangleFormatException {
@@ -79,7 +81,9 @@ public class TriangleListUtils {
             triangles.add(readTriangleFromString(new String(array, indexFrom, array.length - indexFrom)));
         } catch (TriangleFormatException e) {
             throw e;
-        } catch (Exception e) { }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return triangles;
     }
 

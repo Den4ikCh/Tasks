@@ -1,15 +1,21 @@
 package ru.vsu.chuprikov.task8;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 
 public class Matrix {
     static String path = "C:\\Scripts\\Java\\Tasks\\src\\ru\\vsu\\chuprikov\\task8\\";
 
-    public static int[][] readMatrixFromFile(String filename) {
+    public static int[][] readMatrixFromFile(String filename) throws FileNotFoundException {
         int[][] matrix = {};
         File file = new File(path + filename);
+
+        if (!file.exists()) {
+            throw new FileNotFoundException(filename + " not found");
+        }
+
         try (FileReader fileReader = new FileReader(file)) {
             char[] array = new char[(int) file.length()];
             fileReader.read(array);
@@ -47,13 +53,19 @@ public class Matrix {
                     index++;
                 }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        catch (Exception e) { }
         return matrix;
     }
 
-    public static void printMatrix(int[][] matrix, String filename) {
+    public static void printMatrix(int[][] matrix, String filename) throws FileNotFoundException {
         File file = new File(path + filename);
+
+        if (!file.exists()) {
+            throw new FileNotFoundException(filename + " not found");
+        }
+
         try (FileWriter fileWriter = new FileWriter(file)) {
             for (int row = 0; row < matrix.length; row++) {
                 for (int column = 0; column < matrix[row].length; column++) {
@@ -65,8 +77,9 @@ public class Matrix {
                     }
                 }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        catch (Exception e) { }
     }
 
 //    public static boolean isMatrixSorted(int[][] matrix) { //В реализации обязательно использовать вспомогательные функции.
@@ -141,6 +154,9 @@ public class Matrix {
             columnNext++;
         }
         boolean isGrowing = matrix[rowNext][columnNext] > matrix[row][column];
+        if (matrix[rowNext][columnNext] == matrix[row][column]) {
+            return false;
+        }
         boolean isUp = true;
         while (row != matrix.length - 1 || column != matrix[0].length - 1) {
             if ((matrix[rowNext][columnNext] > matrix[row][column]) != isGrowing) {

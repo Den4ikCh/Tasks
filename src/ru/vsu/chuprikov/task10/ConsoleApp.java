@@ -13,7 +13,7 @@ public class ConsoleApp {
             List<List<Triangle>> result = TriangleListUtils.getSimilarTriangles(triangles);
             TriangleListUtils.printTriangles(result, inputArgs.outputFile);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 }

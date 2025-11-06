@@ -1,6 +1,7 @@
 package ru.vsu.chuprikov.task9;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
@@ -63,9 +64,14 @@ public class ListUtils {
         }
     }
 
-    public static List<Integer> readListFromFile(String fileName) {
+    public static List<Integer> readListFromFile(String fileName) throws FileNotFoundException {
         List<Integer> list = new ArrayList<>();
         File file = new File(path + fileName);
+
+        if (!file.exists()) {
+            throw new FileNotFoundException(fileName + " not found");
+        }
+
         try (FileReader fileReader = new FileReader(file)) {
             String number = "";
             char[] array = new char[(int) file.length()];
@@ -81,16 +87,23 @@ public class ListUtils {
                 }
             }
             list.add(Integer.parseInt(number));
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        catch (Exception e) { }
         return list;
     }
 
-    public static void printList(String fileName, List<Integer> list) {
+    public static void printList(String fileName, List<Integer> list) throws FileNotFoundException {
         File file = new File(path + fileName);
+
+        if (!file.exists()) {
+            throw new FileNotFoundException(fileName + " not found");
+        }
+
         try (FileWriter fileWriter = new FileWriter(file)) {
             fileWriter.write(list.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        catch (Exception e) { }
     }
 }

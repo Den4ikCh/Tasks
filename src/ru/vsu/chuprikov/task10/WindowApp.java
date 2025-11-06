@@ -4,7 +4,6 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -100,10 +99,10 @@ public class WindowApp extends JFrame {
             try {
                 List<Triangle> list = TriangleListUtils.readTrianglesFromFile(fileChooser.getSelectedFile().getName());
                 setTrianglesToTable(list);
-            } catch (TriangleFormatException ex) {
-                JOptionPane.showMessageDialog(this, "В данных, представленных в файле есть ошибки. " + ex.getMessage());
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "Ошибка загрузки файла: " + ex.getMessage());
+            } catch (TriangleFormatException e) {
+                JOptionPane.showMessageDialog(this, "В данных, представленных в файле есть ошибки. " + e.getMessage());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Ошибка загрузки файла: " + e.getMessage());
             }
         }
     }
@@ -126,9 +125,8 @@ public class WindowApp extends JFrame {
             try {
                 List<Triangle> list = readTrianglesFromTable();
                 TriangleListUtils.saveTrianglesToFile(list, fileChooser.getSelectedFile().getName());
-            }
-            catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "Ошибка сохранения файла: " + ex.getMessage());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Ошибка сохранения файла: " + e.getMessage());
             }
         }
     }
@@ -150,8 +148,8 @@ public class WindowApp extends JFrame {
                 }
             }
             resultArea.setText(resultText);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage() + ".");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage() + ".");
         }
     }
 
