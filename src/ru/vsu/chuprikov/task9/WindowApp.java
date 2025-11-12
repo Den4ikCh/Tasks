@@ -1,7 +1,5 @@
 package ru.vsu.chuprikov.task9;
 
-import ru.vsu.chuprikov.task8.Matrix;
-
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
