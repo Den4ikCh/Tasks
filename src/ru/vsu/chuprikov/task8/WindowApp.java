@@ -139,13 +139,12 @@ public class WindowApp extends JFrame {
     private void checkOrdering() {
         try {
             int[][] array = readArrayFromTable();
-
             boolean result = Matrix.isMatrixSorted(array);
-
-            String message = result ? "Элементы матрицы образуют упорядоченную последовательность."
-                    : "Элементы матрицы не образуют упорядоченную последовательность.";
+            String message = "Элементы матрицы не образуют упорядоченную последовательность.";
+            if (result) {
+                message = "Элементы матрицы образуют упорядоченную последовательность.";
+            }
             JOptionPane.showMessageDialog(this, message);
-
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Все элементы должны быть целыми числами");
         }

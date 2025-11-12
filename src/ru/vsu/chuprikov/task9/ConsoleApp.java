@@ -7,8 +7,12 @@ import java.util.List;
 class ConsoleApp {
     public static void main(String[] args) {
         InputArgs inputArgs = ConsoleUtils.parseCmdArgs(args);
-        List<Integer> list = ListUtils.readListFromFile(inputArgs.inputFile);
-        List<Integer> result = ListUtils.createNewList(list);
-        ListUtils.printList(inputArgs.outputFile, result);
+        try {
+            List<Integer> list = ListUtils.readListFromFile(inputArgs.inputFile);
+            List<Integer> result = ListUtils.createNewList(list);
+            ListUtils.printList(inputArgs.outputFile, result);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

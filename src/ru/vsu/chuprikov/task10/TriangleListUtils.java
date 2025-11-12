@@ -1,5 +1,7 @@
 package ru.vsu.chuprikov.task10;
 
+import ru.vsu.chuprikov.utils.ConsoleUtils;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -39,8 +41,9 @@ public class TriangleListUtils {
                     }
                 }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        catch (Exception e) { }
     }
 
     public static void saveTrianglesToFile(List<Triangle> list, String fileName) {
@@ -54,11 +57,12 @@ public class TriangleListUtils {
                     fileWriter.write('\n');
                 }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        catch (Exception e) { }
     }
 
-    public static List<Triangle> readTrianglesFromFile(String fileName) {
+    public static List<Triangle> readTrianglesFromFile(String fileName) throws TriangleFormatException {
         File file = new File(path + fileName);
         List<Triangle> triangles = new ArrayList<>();
         try (FileReader fileReader = new FileReader(file)) {
@@ -75,12 +79,15 @@ public class TriangleListUtils {
                 }
             }
             triangles.add(readTriangleFromString(new String(array, indexFrom, array.length - indexFrom)));
+        } catch (TriangleFormatException e) {
+            throw e;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        catch (Exception e) { }
         return triangles;
     }
 
-    public static Triangle readTriangleFromString(String input) {
+    public static Triangle readTriangleFromString(String input) throws TriangleFormatException {
         int indexFrom = 0;
         int indexTo = 0;
         PointDouble[] points = new PointDouble[3] ;

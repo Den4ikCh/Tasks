@@ -99,8 +99,10 @@ public class WindowApp extends JFrame {
             try {
                 List<Triangle> list = TriangleListUtils.readTrianglesFromFile(fileChooser.getSelectedFile().getName());
                 setTrianglesToTable(list);
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "Ошибка загрузки файла: " + ex.getMessage());
+            } catch (TriangleFormatException e) {
+                JOptionPane.showMessageDialog(this, "В данных, представленных в файле есть ошибки. " + e.getMessage());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Ошибка загрузки файла: " + e.getMessage());
             }
         }
     }
@@ -123,32 +125,35 @@ public class WindowApp extends JFrame {
             try {
                 List<Triangle> list = readTrianglesFromTable();
                 TriangleListUtils.saveTrianglesToFile(list, fileChooser.getSelectedFile().getName());
-            }
-            catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "Ошибка сохранения файла: " + ex.getMessage());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Ошибка сохранения файла: " + e.getMessage());
             }
         }
     }
 
     private void printResult() {
-        List<Triangle> list = readTrianglesFromTable();
-        List<List<Triangle>> result = TriangleListUtils.getSimilarTriangles(list);
-        String resultText = "";
-        for (int i = 0; i < result.size(); i++) {
-            resultText += String.format("%d-й набор подобных треугольников: ", i + 1);
-            for (int j = 0; j < result.get(i).size(); j++) {
-                resultText += result.get(i).get(j).toString();
-                if (j != result.get(i).size() - 1) {
-                    resultText += ", ";
-                } else {
-                    resultText += ".\n";
+        try {
+            List<Triangle> list = readTrianglesFromTable();
+            List<List<Triangle>> result = TriangleListUtils.getSimilarTriangles(list);
+            String resultText = "";
+            for (int i = 0; i < result.size(); i++) {
+                resultText += String.format("%d-й набор подобных треугольников: ", i + 1);
+                for (int j = 0; j < result.get(i).size(); j++) {
+                    resultText += result.get(i).get(j).toString();
+                    if (j != result.get(i).size() - 1) {
+                        resultText += ", ";
+                    } else {
+                        resultText += ".\n";
+                    }
                 }
             }
+            resultArea.setText(resultText);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage() + ".");
         }
-        resultArea.setText(resultText);
     }
 
-    private List<Triangle> readTrianglesFromTable() {
+    private List<Triangle> readTrianglesFromTable() throws TriangleFormatException {
         List<Triangle> list = new ArrayList<>();
         for (int i = 0; i < tableModel.getRowCount(); i++) {
             PointDouble[] points = new PointDouble[3];

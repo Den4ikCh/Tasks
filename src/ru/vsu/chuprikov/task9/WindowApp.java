@@ -103,29 +103,26 @@ public class WindowApp extends JFrame {
             try {
                 List<Integer> list = readListFromWindow();
                 ListUtils.printList(fileChooser.getSelectedFile().getName(), list);
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, "Ошибка сохранения файла: " + ex.getMessage());
             }
         }
     }
 
     private void printResult() {
-        List<Integer> result = ListUtils.createNewList(readListFromWindow());
-        resultArea.setText(result.toString());
-    }
-
-    private List<Integer> readListFromWindow() {
-        String input = inputArea.getText();
         try {
-            return Arrays.stream(input.split(" "))
-                    .map(Integer::parseInt)
-                    .collect(Collectors.toList());
-        }
-        catch (Exception e) {
+            List<Integer> result = ListUtils.createNewList(readListFromWindow());
+            resultArea.setText(result.toString());
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Неверный формат, введите только целые числа, через один пробел");
         }
-        return null;
+    }
+
+    private List<Integer> readListFromWindow() throws NumberFormatException {
+        String input = inputArea.getText();
+        return Arrays.stream(input.split(" "))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 
     public static void main(String[] args) {
