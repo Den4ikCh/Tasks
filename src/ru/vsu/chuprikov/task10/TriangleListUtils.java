@@ -1,7 +1,5 @@
 package ru.vsu.chuprikov.task10;
 
-import ru.vsu.chuprikov.utils.ConsoleUtils;
-
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;

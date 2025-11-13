@@ -194,8 +194,4 @@ public class ConsoleUtils {
         System.out.println("Название входного файла: -i, -input, --input-file, --input-file=");
         System.out.println("Название выходного файла: -o, -output, --output-file, --output-file=");
     }
-
-    public static void printError(String message) {
-        System.err.println(message);
-    }
 }

@@ -12,7 +12,7 @@ public class ConsoleApp {
             int[][] matrix = Matrix.readMatrixFromFile(inputArgs.inputFile);
             printResult(matrix, inputArgs.outputFile);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(String.format("File %s.", e.getMessage()));
         }
     }
 
@@ -32,7 +32,7 @@ public class ConsoleApp {
                 fileWriter.write("Элементы матрицы не образуют упорядоченную последовательность.");
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 }

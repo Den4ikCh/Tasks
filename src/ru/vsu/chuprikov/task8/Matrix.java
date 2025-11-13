@@ -54,7 +54,7 @@ public class Matrix {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return matrix;
     }
@@ -78,7 +78,7 @@ public class Matrix {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
