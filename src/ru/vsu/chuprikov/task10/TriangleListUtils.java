@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TriangleListUtils {
-    static String path = "C:\\Scripts\\Java\\Tasks\\src\\ru\\vsu\\chuprikov\\task10\\";
+    static String path = System.getProperty("user.dir") + "\\src\\ru\\vsu\\chuprikov\\task10\\";
 
     public static List<List<Triangle>> getSimilarTriangles(List<Triangle> list) {
         List<List<Triangle>> result = new ArrayList<>();

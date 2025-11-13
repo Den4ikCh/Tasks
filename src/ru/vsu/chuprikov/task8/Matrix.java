@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 
 public class Matrix {
-    static String path = "C:\\Scripts\\Java\\Tasks\\src\\ru\\vsu\\chuprikov\\task8\\";
+    static String path = System.getProperty("user.dir") + "\\src\\ru\\vsu\\chuprikov\\task8\\";
 
     public static int[][] readMatrixFromFile(String filename) throws FileNotFoundException {
         int[][] matrix = {};

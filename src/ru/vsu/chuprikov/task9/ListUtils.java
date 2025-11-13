@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class ListUtils {
-    static String path = "C:\\Scripts\\Java\\Tasks\\src\\ru\\vsu\\chuprikov\\task9\\";
+    static String path = System.getProperty("user.dir") + "\\src\\ru\\vsu\\chuprikov\\task9\\";
 
     public static List<Integer> createNewList(List<Integer> list) {
         List<Integer> count = new ArrayList<>();
@@ -21,6 +21,9 @@ public class ListUtils {
                 if (count.get(j) < count.get(j + 1)) {
                     Collections.swap(count, j, j + 1);
                     Collections.swap(list, j, j + 1);
+//                    count.set(j, count.get(j) + count.get(j + 1));
+//                    count.set(j + 1, count.get(j) - count.get(j + 1));
+//                    count.set(j, count.get(j) - count.get(j + 1));
                 }
             }
         }
@@ -88,7 +91,7 @@ public class ListUtils {
             }
             list.add(Integer.parseInt(number));
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return list;
     }
@@ -103,7 +106,7 @@ public class ListUtils {
         try (FileWriter fileWriter = new FileWriter(file)) {
             fileWriter.write(list.toString());
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 }

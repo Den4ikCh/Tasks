@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class WindowApp extends JFrame {
-    private String path = "C:\\Scripts\\Java\\Tasks\\src\\ru\\vsu\\chuprikov\\task9";
+    private String path = System.getProperty("user.dir") + "\\src\\ru\\vsu\\chuprikov\\task9\\";
     private JTextArea inputArea;
     private JTextArea resultArea;
     private JButton loadFromFile;

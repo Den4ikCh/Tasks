@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WindowApp extends JFrame {
-    private String path = "C:\\Scripts\\Java\\Tasks\\src\\ru\\vsu\\chuprikov\\task10";
+    private String path = System.getProperty("user.dir") + "\\src\\ru\\vsu\\chuprikov\\task10";
     private JTable table;
     private DefaultTableModel tableModel;
     private JTextArea resultArea;

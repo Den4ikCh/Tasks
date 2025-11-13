@@ -1,6 +1,10 @@
 package ru.vsu.chuprikov.task7;
 
+import com.sun.source.doctree.EscapeTree;
 import ru.vsu.chuprikov.utils.ConsoleUtils;
+
+import java.util.Arrays;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -53,10 +57,13 @@ public class Main {
         int position = 0, currentPosition = 0;
         int count = 1;
         int indexFrom = 1;
-        while (array[indexFrom] == array[indexFrom - 1] && indexFrom < array.length - 1) {
+        while (indexFrom < array.length - 1 && array[indexFrom] == array[indexFrom - 1]) {
             indexFrom++;
         }
         int currentCount = indexFrom;
+        if (array.length == 1) {
+            return array;
+        }
         boolean isDown = array[indexFrom] < array[indexFrom - 1];
         for (int i = indexFrom; i < array.length; i++) {
             if (isDown || array[i] >= array[i - 1]) {

@@ -11,13 +11,13 @@ public class ConsoleApp {
         try {
             int[][] matrix = Matrix.readMatrixFromFile(inputArgs.inputFile);
             printResult(matrix, inputArgs.outputFile);
-        } catch (Exception e) {
+        } catch (FileNotFoundException e) {
             System.out.println(String.format("File %s.", e.getMessage()));
         }
     }
 
     public static void printResult(int[][] matrix, String filename) throws FileNotFoundException {
-        String path = "C:\\Scripts\\Java\\Tasks\\src\\ru\\vsu\\chuprikov\\task8\\";
+        String path = System.getProperty("user.dir") + "\\src\\ru\\vsu\\chuprikov\\task8\\";
         File file = new File(path + filename);
 
         if (!file.exists()) {
