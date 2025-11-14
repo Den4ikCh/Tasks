@@ -28,13 +28,13 @@ public class Triangle {
         angleB = Vector2.angleBetween(AB.getMinus(), BC);
         angleC = Vector2.angleBetween(AC.getMinus(), BC.getMinus());
         if (pointA.equals(pointB) || pointA.equals(pointC) || pointB.equals(pointC)) {
-            throw new TriangleFormatException("в треугольнике не может быть двух вершин с одинаковыми координатами");
+            throw new TriangleFormatException(this, "в треугольнике не может быть двух вершин с одинаковыми координатами");
         }
         if (pointA.getX() == pointB.getX() && pointA.getX() == pointC.getX() || pointA.getY() == pointB.getY() && pointA.getY() == pointC.getY()) {
-            throw new TriangleFormatException("все точки не могут лежать на одной прямой");
+            throw new TriangleFormatException(this, "все точки не могут лежать на одной прямой");
         }
         if (angleA < 1e-6 || angleB < 1e-6 || angleC < 1e-6) {
-            throw new TriangleFormatException();
+            throw new TriangleFormatException(this);
         }
     }
 
