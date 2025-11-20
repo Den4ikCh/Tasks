@@ -40,7 +40,7 @@ public class TriangleListUtils {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
@@ -56,7 +56,7 @@ public class TriangleListUtils {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
@@ -80,7 +80,7 @@ public class TriangleListUtils {
         } catch (TriangleFormatException e) {
             throw e;
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return triangles;
     }
