@@ -82,70 +82,7 @@ public class Matrix {
         }
     }
 
-//    public static boolean isMatrixSorted(int[][] matrix) { //В реализации обязательно использовать вспомогательные функции.
-//        int row = 0, column = 0;
-//        int[] array = new int[matrix.length * matrix[0].length];
-//        array[0] = matrix[0][0];
-//        if (matrix.length > 1) {
-//            row++;
-//        } else if (matrix[0].length > 1) {
-//            column++;
-//        }
-//        int index = 1;
-//        boolean isUp = true;
-//        while (row != matrix.length - 1 || column != matrix[0].length - 1) {
-//            array[index] = matrix[row][column];
-//            index++;
-//            if (isUp) {
-//                if (row == 0) {
-//                    column++;
-//                    isUp = false;
-//                } else if (column + 1 == matrix[0].length) {
-//                    row++;
-//                    isUp = false;
-//                }
-//                else {
-//                    row--;
-//                    column++;
-//                }
-//            }
-//            else {
-//                if (row + 1 == matrix.length) {
-//                    column++;
-//                    isUp = true;
-//                } else if (column == 0) {
-//                    row++;
-//                    isUp = true;
-//                }
-//                else {
-//                    row++;
-//                    column--;
-//                }
-//            }
-//        }
-//        if (index != array.length) {
-//            array[index] = matrix[row][column];
-//        }
-//        return isArraySorted(array);
-//    }
-//
-//    public static boolean isArraySorted(int[] array) { //Вспомогательная функция, но для неё нужно создать одномерный массив
-//        if (array.length == 1) {
-//            return true;
-//        }
-//        boolean isGrowing = array[1] > array[0];
-//        if (array[1] == array[0]) {
-//            return false;
-//        }
-//        for (int i = 2; i < array.length; i++) {
-//            if ((array[i] > array[i - 1]) != isGrowing || array[i] == array[i - 1]) {
-//                return false;
-//            }
-//        }
-//        return true;
-//    }
-
-    public static boolean isMatrixSorted(int[][] matrix) { //Дополнительные массивы и списки не создавать.
+    public static boolean isMatrixSorted(int[][] matrix) {
         int row = 0, column = 0;
         int rowNext = 0, columnNext = 0;
         if (matrix.length != 1) {
