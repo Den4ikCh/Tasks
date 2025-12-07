@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class StringUtils {
-    static Map<Integer, String> numbers = new HashMap<Integer, String>() {{
+    static final Map<Integer, String> numbers = new HashMap<Integer, String>() {{
         put(0, "ноль");
         put(1, "один");
         put(2, "два");
@@ -16,11 +16,11 @@ public class StringUtils {
         put(8, "восемь");
         put(9, "девять");
     }};
-    static Map<Integer, String> numbersFemale = new HashMap<Integer, String>() {{
+    static final Map<Integer, String> numbersFemale = new HashMap<Integer, String>() {{
         put(1, "одна");
         put(2, "две");
     }};
-    static Map<Integer, String> tens = new HashMap<Integer, String>() {{
+    static final Map<Integer, String> tens = new HashMap<Integer, String>() {{
         put(10, "десять");
         put(20, "двадцать");
         put(30, "тридцать");
@@ -31,7 +31,7 @@ public class StringUtils {
         put(80, "восемьдесят");
         put(90, "девяносто");
     }};
-    static Map<Integer, String> twenties = new HashMap<Integer, String>() {{
+    static final Map<Integer, String> twenties = new HashMap<Integer, String>() {{
         put(11, "одиннадцать");
         put(12, "двенадцать");
         put(13, "тринадцать");
@@ -42,7 +42,7 @@ public class StringUtils {
         put(18, "восемнадцать");
         put(19, "девятнадцать");
     }};
-    static Map<Integer, String> hundreds = new HashMap<Integer, String>() {{
+    static final Map<Integer, String> hundreds = new HashMap<Integer, String>() {{
         put(100, "сто");
         put(200, "двести");
         put(300, "триста");
@@ -143,8 +143,7 @@ public class StringUtils {
             if (result.toString() != "") {
                 result.append(" ");
             }
-            result.append(twenties.get(number));
-            number = 0;
+            return result.append(twenties.get(number)).toString();
         }
 
         int ten = number / 10;
