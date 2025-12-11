@@ -3,7 +3,7 @@ package ru.vsu.chuprikov.task12;
 public class Recursion {
     private static char[][] symbols;
 
-    public static void drawSierpinskiTriangle(int level) {
+    public static char[][] drawSierpinskiTriangle(int level) {
         symbols = new char[(int) Math.pow(2, level)][(int) Math.pow(2, level + 1)];
         for (int x = 0; x < symbols.length; x++) {
             for (int y = 0; y < symbols[0].length; y++) {
@@ -11,12 +11,7 @@ public class Recursion {
             }
         }
         printTriangle(0, 0, level);
-        for (int x = 0; x < symbols.length; x++) {
-            for (int y = 0; y < symbols[0].length; y++) {
-                System.out.print(symbols[x][y]);
-            }
-            System.out.println();
-        }
+        return symbols;
     }
 
     public static void printTriangle(int x, int y, int level) {
