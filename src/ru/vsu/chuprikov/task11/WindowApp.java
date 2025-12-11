@@ -118,7 +118,7 @@ public class WindowApp extends JFrame {
             String result = StringUtils.getStringRepresentation(Integer.parseInt(inputArea.getText()));
             resultArea.setText(result);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Введите число без пробелов и других символов.");
+            JOptionPane.showMessageDialog(this, "Введите число от 0 до 1.000.000.000 без пробелов и других символов.");
         }
     }
 

@@ -1,0 +1,36 @@
+package ru.vsu.chuprikov.task12;
+
+public class Recursion {
+    private static char[][] symbols;
+
+    public static void drawSierpinskiTriangle(int level) {
+        symbols = new char[(int) Math.pow(2, level)][(int) Math.pow(2, level + 1)];
+        for (int x = 0; x < symbols.length; x++) {
+            for (int y = 0; y < symbols[0].length; y++) {
+                symbols[x][y] = ' ';
+            }
+        }
+        printTriangle(0, 0, level);
+        for (int x = 0; x < symbols.length; x++) {
+            for (int y = 0; y < symbols[0].length; y++) {
+                System.out.print(symbols[x][y]);
+            }
+            System.out.println();
+        }
+    }
+
+    public static void printTriangle(int x, int y, int level) {
+        if (level == 1) {
+            symbols[x + 1][y] = '/';
+            symbols[x + 1][y + 1] = '_';
+            symbols[x + 1][y + 2] = '_';
+            symbols[x + 1][y + 3] = '\\';
+            symbols[x][y + 1] = '/';
+            symbols[x][y + 2] = '\\';
+            return;
+        }
+        printTriangle(x, (int) Math.pow(2, level - 1) + y, level - 1);
+        printTriangle((int) Math.pow(2, level - 1) + x, (int) Math.pow(2, level) + y, level - 1);
+        printTriangle((int) Math.pow(2, level - 1) + x, y, level - 1);
+    }
+}
