@@ -7,9 +7,6 @@ import ru.vsu.chuprikov.task10.TriangleListUtils;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class WindowApp extends JFrame {
     private String path = System.getProperty("user.dir") + "\\src\\ru\\vsu\\chuprikov\\task11\\";
